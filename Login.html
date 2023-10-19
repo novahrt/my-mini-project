@@ -77,24 +77,21 @@
 <body>
     <div class="login-form">
         <h2>Login</h2>
-        <form>
+        <form id="login-form" onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="nama">Nama</label>
-                <br>
-                <br>
                 <input type="text" name="nama" id="nama">
+                <span id="nama-error" class="error"></span>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <br>
-                <br>
                 <input type="email" name="email" id="email">
+                <span id="email-error" class="error"></span>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <br>
-                <br>
                 <input type="password" name="password" id="password">
+                <span id="password-error" class="error"></span>
             </div>
             <button type="submit">Login</button>
         </form>
@@ -103,5 +100,39 @@
             Belum memiliki akun? <a href="register.html">Daftar Sekarang</a>
         </div>
     </div>
+
+    <script>
+        function validateForm() {
+            // Ambil nilai dari input fields
+            var nama = document.getElementById("nama").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+    
+            // Validasi Nama, Email, dan Password
+            if (nama === "" || email === "" || password === "") {
+                alert("Pastikan semua form telah diisi.");
+                return false;
+            }
+    
+            // Validasi Email
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById("email-error").textContent = "Email tidak valid";
+                alert("Email tidak valid");
+                return false;
+            }
+    
+            // Validasi Password (minimal 8 karakter terdiri dari huruf dan angka)
+            var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+            if (!passwordPattern.test(password)) {
+                document.getElementById("password-error").textContent = "Password memiliki panjang 8 karakter yang mengandung huruf dan angka";
+                alert("Password memiliki panjang 8 karakter yang mengandung huruf dan angka");
+                return false;
+            }
+    
+            // Form valid
+            return true;
+        }
+    </script>    
 </body>
 </html>

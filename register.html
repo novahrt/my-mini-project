@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -62,6 +63,14 @@
         button[type="submit"]:hover {
             background-color: #0056b3;
         }
+
+        .password-toggle {
+            cursor: pointer;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -69,85 +78,99 @@
         <h2>Registrasi</h2>
         <form id="registration-form">
             <div class="form-group">
-                <label for="firstName">First Name</label>
-                <br>
-                <input type="text" name="firstName" id="firstName" required>
-                <div class="error" id="firstName-error"></div>
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <br>
-                <input type="text" name="lastName" id="lastName" required>
-                <div class="error" id="lastName-error"></div>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" required>
+                <div class="error" id="name-error"></div>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <br>
                 <input type="email" name="email" id="email" required>
                 <div class="error" id="email-error"></div>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" required>
+                <div style="position: relative;">
+                    <input type="password" name="password" id="password" required>
+                    <i class="password-toggle far fa-eye-slash" id="password-toggle"></i>
+                </div>
                 <div class="error" id="password-error"></div>
             </div>
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
-                <br>
-                <input type="password" name="confirmPassword" id="confirmPassword" required>
+                <div style="position: relative;">
+                    <input type="password" name="confirmPassword" id="confirmPassword" required>
+                    <i class="password-toggle far fa-eye-slash" id="confirmPassword-toggle"></i>
+                </div>
                 <div class="error" id="confirmPassword-error"></div>
             </div>
             <!-- Tambahkan tombol submit -->
-            <button type="submit" formaction="login.html">Register</button>
+            <button type="submit">Register</button>
         </form>
     </div>
-    <!-- Kode Javascript -->
+
     <script>
-    const registrationForm = document.getElementById("registration-form");
-        const confirmPasswordInput = document.getElementById("confirmPassword");
-        const confirmPasswordError = document.getElementById("confirmPassword-error");
+        const registrationForm = document.getElementById("registration-form");
+        const nameInput = document.getElementById("name");
+        const nameError = document.getElementById("name-error");
+        const emailInput = document.getElementById("email");
+        const emailError = document.getElementById("email-error");
         const passwordInput = document.getElementById("password");
         const passwordError = document.getElementById("password-error");
-
-        registrationForm.addEventListener("submit", function (e) {
-            // Validasi agar semua input harus diisi
-            if (!registrationForm.checkValidity()) {
-                e.preventDefault();
-                return;
-            }
-
-            if (passwordInput.value !== confirmPasswordInput.value) {
-                e.preventDefault();
-                confirmPasswordError.textContent = "Konfirmasi Password tidak sesuai";
-                confirmPasswordInput.classList.add("error");
-            }
-
-            if (passwordInput.value.length < 8 || !/^(?=.*[A-Za-z])(?=.*\d)/.test(passwordInput.value)) {
-                e.preventDefault();
-                passwordError.textContent = "Password harus memiliki panjang 8 karakter dan terdiri dari angka dan huruf";
-                passwordInput.classList.add("error");
+        const confirmPasswordInput = document.getElementById("confirmPassword");
+        const confirmPasswordError = document.getElementById("confirmPassword-error");
+        
+        const passwordToggle = document.querySelectorAll(".password-toggle");
+        passwordToggle.forEach(toggle => {
+            toggle.addEventListener("click", function () {
+                togglePasswordVisibility(toggle, toggle.previousElementSibling);
+            });
+        });
+        
+        function togglePasswordVisibility(toggle, input) {
+            if (input.type === "password") {
+                input.type = "text";
+                toggle.classList.remove("fa-eye-slash");
+                toggle.classList.add("fa-eye");
             } else {
-                // Redirect to the login page after successful registration
-                window.location.href = "login.html"; // Ganti "login.html" sesuai dengan URL halaman login Anda
+                input.type = "password";
+                toggle.classList.remove("fa-eye");
+                toggle.classList.add("fa-eye-slash");
             }
-        });
+        }
+        
+    registrationForm.addEventListener("submit", function (e) {
+    nameError.textContent = "";
+    emailError.textContent = "";
+    passwordError.textContent = "";
+    confirmPasswordError.textContent = "";
 
-        // Menghapus pesan kesalahan saat konfirmasi password diubah
-        confirmPasswordInput.addEventListener("input", function () {
-            confirmPasswordError.textContent = "";
-            confirmPasswordInput.classList.remove("error");
-        });
+    const nameValue = nameInput.value.trim();
+    if (nameValue.length === 0) {
+        e.preventDefault();
+        nameError.textContent = "Nama harus diisi.";
+    } else if (!/^[A-Za-z]+$/.test(nameValue)) {
+        e.preventDefault();
+        nameError.textContent = "Nama harus maksimal 10 karakter.";
+    } else if (nameValue.length > 10) {
+        e.preventDefault();
+        nameError.textContent = "Nama harus memiliki maksimal 10 karakter.";
+    }
 
-        // Validasi panjang dan isi kata sandi
-        passwordInput.addEventListener("input", function () {
-            if (passwordInput.value.length < 8 || !/^(?=.*[A-Za-z])(?=.*\d)/.test(passwordInput.value)) {
-                passwordError.textContent = "Password harus memiliki panjang 8 karakter dan terdiri dari angka dan huruf";
-                passwordInput.classList.add("error");
-            } else {
-                passwordError.textContent = "";
-                passwordInput.classList.remove("error");
-            }
-        });
+    if (!emailInput.value.includes("@")) {
+        e.preventDefault();
+        emailError.textContent = "Format email tidak valid.";
+    }
+
+    if (passwordInput.value.length < 8 || !/^(?=.*[A-Za-z])(?=.*\d)/.test(passwordInput.value)) {
+        e.preventDefault();
+        passwordError.textContent = "Password harus memiliki 8 karakter yang terdiri dari huruf dan angka.";
+    }
+
+    if (passwordInput.value !== confirmPasswordInput.value) {
+        e.preventDefault();
+        confirmPasswordError.textContent = "Konfirmasi Password yang Anda masukkan tidak valid.";
+    }
+});
     </script>
 </body>
 </html>
