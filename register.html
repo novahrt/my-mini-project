@@ -45,12 +45,19 @@
             border-radius: 4px;
         }
 
+        .password-toggle {
+            cursor: pointer;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
+
         .error {
             color: red;
             font-size: 14px;
         }
 
-        button[type="submit"] {
+        button[type="button"] {
             background-color: #007BFF;
             color: #fff;
             padding: 10px 20px;
@@ -60,16 +67,8 @@
             width: 100%;
         }
 
-        button[type="submit"]:hover {
+        button[type="button"]:hover {
             background-color: #0056b3;
-        }
-
-        .password-toggle {
-            cursor: pointer;
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            color: black;
         }
     </style>
 </head>
@@ -79,11 +78,13 @@
         <form id="registration-form">
             <div class="form-group">
                 <label for="name">Name</label>
+                <br>
                 <input type="text" name="name" id="name" required>
                 <div class="error" id="name-error"></div>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
+                <br>
                 <input type="email" name="email" id="email" required>
                 <div class="error" id="email-error"></div>
             </div>
@@ -91,7 +92,7 @@
                 <label for="password">Password</label>
                 <div style="position: relative;">
                     <input type="password" name="password" id="password" required>
-                    <i class="password-toggle far fa-eye-slash" id="password-toggle"></i>
+                    <i class="password-toggle far fa-eye" id="password-toggle"></i>
                 </div>
                 <div class="error" id="password-error"></div>
             </div>
@@ -99,12 +100,12 @@
                 <label for="confirmPassword">Confirm Password</label>
                 <div style="position: relative;">
                     <input type="password" name="confirmPassword" id="confirmPassword" required>
-                    <i class="password-toggle far fa-eye-slash" id="confirmPassword-toggle"></i>
+                    <i class="password-toggle far fa-eye" id="confirmPassword-toggle"></i>
                 </div>
                 <div class="error" id="confirmPassword-error"></div>
             </div>
             <!-- Tambahkan tombol submit -->
-            <button type="submit">Register</button>
+            <button type="button" id="register-button">Register</button>
         </form>
     </div>
 
@@ -129,48 +130,61 @@
         function togglePasswordVisibility(toggle, input) {
             if (input.type === "password") {
                 input.type = "text";
-                toggle.classList.remove("fa-eye-slash");
-                toggle.classList.add("fa-eye");
-            } else {
-                input.type = "password";
                 toggle.classList.remove("fa-eye");
                 toggle.classList.add("fa-eye-slash");
+            } else {
+                input.type = "password";
+                toggle.classList.remove("fa-eye-slash");
+                toggle.classList.add("fa-eye");
             }
         }
         
-    registrationForm.addEventListener("submit", function (e) {
-    nameError.textContent = "";
-    emailError.textContent = "";
-    passwordError.textContent = "";
-    confirmPasswordError.textContent = "";
+        registrationForm.addEventListener("submit", function (e) {
+            nameError.textContent = "";
+            emailError.textContent = "";
+            passwordError.textContent = "";
+            confirmPasswordError.textContent = "";
 
-    const nameValue = nameInput.value.trim();
-    if (nameValue.length === 0) {
-        e.preventDefault();
-        nameError.textContent = "Nama harus diisi.";
-    } else if (!/^[A-Za-z]+$/.test(nameValue)) {
-        e.preventDefault();
-        nameError.textContent = "Nama harus maksimal 10 karakter.";
-    } else if (nameValue.length > 10) {
-        e.preventDefault();
-        nameError.textContent = "Nama harus memiliki maksimal 10 karakter.";
-    }
+            if (nameInput.value.trim().length === 0) {
+                e.preventDefault();
+                nameError.textContent = "Nama tidak valid.";
+            } else if (nameInput.value.length > 10 || !/^[A-Za-z]*$/.test(nameInput.value)) {
+                e.preventDefault();
+                nameError.textContent = "Nama maksimal 10 karakter dan hanya berupa huruf.";
+            }
 
-    if (!emailInput.value.includes("@")) {
-        e.preventDefault();
-        emailError.textContent = "Format email tidak valid.";
-    }
+            if (!emailInput.value.includes("@")) {
+                e.preventDefault();
+                emailError.textContent = "Format Email tidak valid";
+            }
 
-    if (passwordInput.value.length < 8 || !/^(?=.*[A-Za-z])(?=.*\d)/.test(passwordInput.value)) {
-        e.preventDefault();
-        passwordError.textContent = "Password harus memiliki 8 karakter yang terdiri dari huruf dan angka.";
-    }
+            if (passwordInput.value.length < 8 || !/^(?=.*[A-Za-z])(?=.*\d)/.test(passwordInput.value)) {
+                e.preventDefault();
+                passwordError.textContent = "Password harus memiliki 8 karakter berupa huruf dan angka.";
+            }
 
-    if (passwordInput.value !== confirmPasswordInput.value) {
-        e.preventDefault();
-        confirmPasswordError.textContent = "Konfirmasi Password yang Anda masukkan tidak valid.";
-    }
-});
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                e.preventDefault();
+                confirmPasswordError.textContent = "Konfirmasi Password anda tidak sesuai.";
+            }
+        });
+    </script>
+    <script>
+        document.getElementById("register-button").addEventListener("click", function () {
+            // Validasi apakah semua input telah terisi
+            if (
+                nameInput.value.trim() !== "" &&
+                emailInput.value.trim() !== "" &&
+                passwordInput.value.trim() !== "" &&
+                confirmPasswordInput.value.trim() !== ""
+            ) {
+                // Arahkan pengguna ke halaman login jika semua data terisi
+                window.location.href = "login.html";
+            } else {
+                // Tampilkan pesan kesalahan jika ada input yang kosong
+                alert("Harap isi semua data.");
+            }
+        });
     </script>
 </body>
 </html>
