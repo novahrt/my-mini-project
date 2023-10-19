@@ -55,7 +55,7 @@
             font-size: 14px;
         }
 
-        button[type="submit"] {
+        button[type="button"] {
             background-color: #007BFF;
             color: #fff;
             padding: 10px 20px;
@@ -65,7 +65,7 @@
             width: 100%;
         }
 
-        button[type="submit"]:hover {
+        button[type="button"]:hover {
             background-color: #0056b3;
         }
 
@@ -111,14 +111,13 @@
                 </div>
                 <span id="password-error" class="error"></span>
             </div>
-            <button type="submit" id="login-button" onclick="window.location.href = 'Dashboard.html'">Login</button>
+            <button type="button" id="login-button">Login</button>
         </form>
         <br>
         <div class="sign-up-link">
             Belum memiliki akun? <a href="register.html">Daftar Sekarang</a>
         </div>
     </div>
-
     <script>
         const loginForm = document.getElementById("login-form");
         const namaInput = document.getElementById("nama");
@@ -127,12 +126,17 @@
         const emailError = document.getElementById("email-error");
         const passwordInput = document.getElementById("password");
         const passwordError = document.getElementById("password-error");
-
+        const loginButton = document.getElementById("login-button");
+    
         const passwordToggle = document.getElementById("password-toggle");
-
+    
         // Function untuk menampilkan/menyembunyikan password
         let passwordVisible = false;
         passwordToggle.addEventListener("click", function () {
+            togglePasswordVisibility();
+        });
+    
+        function togglePasswordVisibility() {
             passwordVisible = !passwordVisible;
             if (passwordVisible) {
                 passwordInput.type = "text";
@@ -143,24 +147,30 @@
                 passwordToggle.classList.remove("fa-eye-slash");
                 passwordToggle.classList.add("fa-eye");
             }
-        });
-
+        }
+    
         loginForm.addEventListener("submit", function (e) {
             namaError.textContent = "";
             emailError.textContent = "";
             passwordError.textContent = "";
-
-            if (namaInput.value.trim() === '' || namaInput.value.length > 10 || !/^[A-Za-z]*$/.test(namaInput.value)) {
+    
+            if (namaInput.value.trim() === '') {
                 e.preventDefault();
-                namaError.textContent = "Nama tidak valid.";
+                namaError.textContent = "Harap isi Nama.";
             }
-
-            if (!emailInput.value.includes('@')) {
+    
+            if (emailInput.value.trim() === '') {
+                e.preventDefault();
+                emailError.textContent = "Harap isi Email.";
+            } else if (!emailInput.value.includes('@')) {
                 e.preventDefault();
                 emailError.textContent = "Format Email tidak valid";
             }
-
-            if (passwordInput.value.length < 8 || !/^(?=.*[A-Za-z])(?=.*\d)/.test(passwordInput.value)) {
+    
+            if (passwordInput.value.trim() === '') {
+                e.preventDefault();
+                passwordError.textContent = "Harap isi Password.";
+            } else if (passwordInput.value.length < 8 || !/^(?=.*[A-Za-z])(?=.*\d)/.test(passwordInput.value)) {
                 e.preventDefault();
                 passwordError.textContent = "Password harus memiliki 8 karakter berupa huruf dan angka.";
             } else {
@@ -168,6 +178,21 @@
                 window.location.href = "Dashboard.html";
             }
         });
-    </script>
+    
+        // Tambahan: Periksa jika semua data telah diisi saat tombol login ditekan
+        loginButton.addEventListener("click", function () {
+            if (
+                namaInput.value.trim() !== '' &&
+                emailInput.value.trim() !== '' &&
+                passwordInput.value.trim() !== ''
+            ) {
+                // Arahkan ke halaman dashboard jika semua data telah diisi
+                window.location.href = "Dashboard.html";
+            } else {
+                // Tampilkan peringatan jika ada data yang belum diisi
+                alert("Harap isi semua data.");
+            }
+        });
+    </script>    
 </body>
 </html>
