@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .registration-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        button[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-form">
+        <h2>Registrasi</h2>
+        <form id="registration-form">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <br>
+                <input type="text" name="firstName" id="firstName" required>
+                <div class="error" id="firstName-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <br>
+                <input type="text" name="lastName" id="lastName" required>
+                <div class="error" id="lastName-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <br>
+                <input type="email" name="email" id="email" required>
+                <div class="error" id="email-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required>
+                <div class="error" id="password-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <br>
+                <input type="password" name="confirmPassword" id="confirmPassword" required>
+                <div class="error" id="confirmPassword-error"></div>
+            </div>
+            <!-- Tambahkan tombol submit -->
+            <button type="submit" formaction="login.html">Register</button>
+        </form>
+    </div>
+    <!-- Kode Javascript -->
+    <script>
+    const registrationForm = document.getElementById("registration-form");
+        const confirmPasswordInput = document.getElementById("confirmPassword");
+        const confirmPasswordError = document.getElementById("confirmPassword-error");
+        const passwordInput = document.getElementById("password");
+        const passwordError = document.getElementById("password-error");
+
+        registrationForm.addEventListener("submit", function (e) {
+            // Validasi agar semua input harus diisi
+            if (!registrationForm.checkValidity()) {
+                e.preventDefault();
+                return;
+            }
+
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                e.preventDefault();
+                confirmPasswordError.textContent = "Konfirmasi Password tidak sesuai";
+                confirmPasswordInput.classList.add("error");
+            }
+
+            if (passwordInput.value.length < 8 || !/^(?=.*[A-Za-z])(?=.*\d)/.test(passwordInput.value)) {
+                e.preventDefault();
+                passwordError.textContent = "Password harus memiliki panjang 8 karakter dan terdiri dari angka dan huruf";
+                passwordInput.classList.add("error");
+            } else {
+                // Redirect to the login page after successful registration
+                window.location.href = "login.html"; // Ganti "login.html" sesuai dengan URL halaman login Anda
+            }
+        });
+
+        // Menghapus pesan kesalahan saat konfirmasi password diubah
+        confirmPasswordInput.addEventListener("input", function () {
+            confirmPasswordError.textContent = "";
+            confirmPasswordInput.classList.remove("error");
+        });
+
+        // Validasi panjang dan isi kata sandi
+        passwordInput.addEventListener("input", function () {
+            if (passwordInput.value.length < 8 || !/^(?=.*[A-Za-z])(?=.*\d)/.test(passwordInput.value)) {
+                passwordError.textContent = "Password harus memiliki panjang 8 karakter dan terdiri dari angka dan huruf";
+                passwordInput.classList.add("error");
+            } else {
+                passwordError.textContent = "";
+                passwordInput.classList.remove("error");
+            }
+        });
+    </script>
+</body>
+</html>
