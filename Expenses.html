@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expenses Page</title>
+    <style>
+        /* CSS untuk styling */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #23242b;
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        select, input[type="text"] {
+            width: 100%;
+            padding: 5px;
+        }
+
+        input[type="text"] {
+            margin-top: 10px;
+        }
+
+        .action-btn {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            width: 60%;
+            margin: 10% auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-content input, .modal-content select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .modal-content button {
+            background-color: #23242b;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-content button:first-child {
+            background-color: black;
+            margin-right: 10px;
+        }
+
+        .action-btn button {
+            background-color: black;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .action-btn button:hover {
+            background-color: navy;
+        }
+    </style>
+</head>
+<body>
+    <h1>Expenses Page</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Tanggal</th>
+                <th>Pilih Rekening</th>
+                <th>Jumlah</th>
+                <th>Kategori</th>
+                <th>Keterangan</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data expenses akan ditampilkan di sini -->
+        </tbody>
+    </table>
+    <div class="action-btn">
+        <button onclick="openModal()">Tambah Data</button>
+        <br>
+        <button onclick="goToDashboard()">Kembali ke Dashboard</button>
+    </div>
+
+    <div id="dataModal" class="modal">
+        <div class="modal-content">
+            <h2>Tambah Data</h2>
+            <input type="date" placeholder="Tanggal">
+            <select>
+                <option value="cash">Uang Tunai</option>
+                <option value="ewallet">Dompet Digital</option>
+                <option value="mbanking">M-Banking</option>
+            </select>
+            <input type="text" placeholder="Jumlah">
+            <select>
+                <option value="belanja-bulanan">Belanja Bulanan</option>
+                <option value="makan">Makan</option>
+                <option value="skincare">Skincare</option>
+                <option value="tagihan">Tagihan</option>
+                <option value="biaya-sewa">Biaya Sewa</option>
+                <option value="transportasi">Transportasi</option>
+                <option value="listrik">Listrik</option>
+                <option value="pajak">Pajak</option>
+                <option value="liburan">Liburan</option>
+                <option value="biaya-tidak-terduga">Biaya Tidak Terduga</option>
+            </select>
+            <input type="text" placeholder="Keterangan">
+            <button onclick="addRow()">Tambah</button>
+            <button onclick="closeModal()">Batal</button>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk menampilkan pop-up tambah data
+        function openModal() {
+            document.getElementById("dataModal").style.display = "block";
+        }
+
+        // Fungsi untuk menutup pop-up
+        function closeModal() {
+            document.getElementById("dataModal").style.display = "none";
+        }
+
+        // Fungsi untuk menambahkan baris data ke tabel
+        function addRow() {
+            const tanggal = document.querySelector(".modal-content input[type='date']").value;
+            const rekening = document.querySelector(".modal-content select:nth-of-type(1)").value;
+            const jumlah = document.querySelector(".modal-content input[type='text']").value;
+            const kategori = document.querySelector(".modal-content select:nth-of-type(2)").value;
+            const keterangan = document.querySelector(".modal-content input[type='text']").value;
+
+            const table = document.querySelector("table tbody");
+            const newRow = table.insertRow(table.rows.length);
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+            const cell3 = newRow.insertCell(2);
+            const cell4 = newRow.insertCell(3);
+            const cell5 = newRow.insertCell(4);
+            const cell6 = newRow.insertCell(5);
+
+            cell1.innerHTML = tanggal;
+            cell2.innerHTML = rekening;
+            cell3.innerHTML = jumlah;
+            cell4.innerHTML = kategori;
+            cell5.innerHTML = keterangan;
+            cell6.innerHTML = '<button>Edit</button> <button>Delete</button>';
+
+            closeModal(); // Tutup pop-up setelah menambahkan data
+
+            // Reset input fields
+            document.querySelector(".modal-content input[type='date']").value = "";
+            document.querySelector(".modal-content select:nth-of-type(1)").value = "cash";
+            document.querySelector(".modal-content input[type='text']").value = "";
+            document.querySelector(".modal-content select:nth-of-type(2)").value = "belanja-bulanan";
+            document.querySelector(".modal-content input[type='text']").value = "";
+        }
+
+        // Fungsi untuk kembali ke dashboard
+        function goToDashboard() {
+            // Redirect ke halaman dashboard
+            window.location.href = "dashboard.html";
+        }
+    </script>
+</body>
+</html>

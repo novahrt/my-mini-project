@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Font Link for Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <style>
+        /* Import Google font - Poppins */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            justify-content: center;
+            min-height: 100vh;
+            background: #262931;
+        }
+        .wrapper {
+            width: 100%;
+            max-width: 450px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        .wrapper header {
+            display: flex;
+            align-items: center;
+            padding: 25px 30px 10px;
+            justify-content: space-between;
+        }
+        header .icons {
+            display: flex;
+        }
+        header .icons span {
+            height: 38px;
+            width: 38px;
+            margin: 0 1px;
+            cursor: pointer;
+            color: #878787;
+            text-align: center;
+            line-height: 38px;
+            font-size: 1.9rem;
+            user-select: none;
+            border-radius: 50%;
+        }
+        .icons span:last-child {
+            margin-right: -10px;
+        }
+        header .icons span:hover {
+            background: #f2f2f2;
+        }
+        header .current-date {
+            font-size: 1.45rem;
+            font-weight: 500;
+        }
+        .calendar {
+            padding: 20px;
+        }
+        .calendar ul {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            text-align: center;
+        }
+        .calendar .days {
+            margin-bottom: 20px;
+        }
+        .calendar li {
+            color: black;
+            width: calc(100% / 7);
+            font-size: 1.07rem;
+            cursor: pointer;
+        }
+        .calendar .weeks li {
+            font-weight: 500;
+            cursor: default;
+        }
+        .calendar .days li {
+            z-index: 1;
+            position: relative;
+            margin-top: 30px;
+        }
+        .days li.inactive {
+            color: #aaa;
+        }
+        .days li.active {
+            color: #fff;
+        }
+        .days li::before {
+            position: absolute;
+            content: "";
+            left: 50%;
+            top: 50%;
+            height: 40px;
+            width: 40px;
+            z-index: -1;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .days li.active::before {
+            background: black;
+        }
+        .days li:not(.active):hover::before {
+            background: #f2f2f2;
+        }
+        .dashboard-button {
+            text-align: center;
+            padding: 20px;
+        }
+        .dashboard-button button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .dashboard-button button:hover {
+            background-color: #0056b3;
+        }
+        .popup {
+            display: none;
+            background: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            max-width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <p class="current-date"></p>
+            <div class="icons">
+                <span id="prev" class="material-symbols-rounded">chevron_left</span>
+                <span id="next" class="material-symbols-rounded">chevron_right</span>
+            </div>
+        </header>
+        <div class="calendar">
+            <ul class="weeks">
+                <li>Sun</li>
+                <li>Mon</li>
+                <li>Tue</li>
+                <li>Wed</li>
+                <li>Thu</li>
+                <li>Fri</li>
+                <li>Sat</li>
+            </ul>
+            <ul class="days"></ul>
+        </div>
+        <div class="dashboard-button">
+            <button id="gotoDashboard">Kembali ke Dashboard</button>
+        </div>
+    </div>
+    <div class="popup" id="popup">
+        <div class="popup-content" id="popupContent">
+            <!-- Pop-up content goes here -->
+        </div>
+    </div>
+    <script>
+        const daysTag = document.querySelector(".days");
+        const currentDate = document.querySelector(".current-date");
+        const prevNextIcon = document.querySelectorAll(".icons span");
+        const gotoDashboardButton = document.getElementById("gotoDashboard");
+        const popup = document.getElementById("popup");
+        const popupContent = document.getElementById("popupContent");
+
+        // Sample data for event history
+        const eventHistory = {
+            "2023-10-15": ["Transaction 1", "Transaction 2"],
+            "2023-10-22": ["Transaction 3"],
+            "2023-10-30": ["Transaction 4", "Transaction 5"],
+        };
+
+        // getting new date, current year, and month
+        let date = new Date();
+        let currYear = date.getFullYear();
+        let currMonth = date.getMonth();
+
+        // storing full names of all months in an array
+        const months = ["January", "February", "March", "April", "May", "June", "July",
+                    "August", "September", "October", "November", "December"];
+
+        const renderCalendar = () => {
+            let firstDayOfMonth = new Date(currYear, currMonth, 1).getDay(); // getting the first day of the month
+            let lastDateOfMonth = new Date(currYear, currMonth + 1, 0).getDate(); // getting the last date of the month
+            let lastDayOfMonth = new Date(currYear, currMonth, lastDateOfMonth).getDay(); // getting the last day of the month
+            let lastDateOfLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting the last date of the previous month
+            let liTag = "";
+
+            for (let i = firstDayOfMonth; i > 0; i--) { // creating li for the last days of the previous month
+                liTag += `<li class="inactive">${lastDateOfLastMonth - i + 1}</li>`;
+            }
+
+            for (let i = 1; i <= lastDateOfMonth; i++) { // creating li for all the days of the current month
+                let isToday = i === date.getDate() && currMonth === date.getMonth() 
+                             && currYear === date.getFullYear() ? "active" : "";
+                const eventsForDay = eventHistory[`${currYear}-${currMonth + 1}-${i}`];
+                if (eventsForDay) {
+                    // If there are events for the day, add a click handler to show the pop-up
+                    liTag += `<li class="${isToday} clickable" data-events='${JSON.stringify(eventsForDay)}'>${i}</li>`;
+                } else {
+                    liTag += `<li class="${isToday}">${i}</li>`;
+                }
+            }
+
+            for (let i = lastDayOfMonth; i < 6; i++) { // creating li for the first days of the next month
+                liTag += `<li class="inactive">${i - lastDayOfMonth + 1}</li>`;
+            }
+            currentDate.innerText = `${months[currMonth]} ${currYear}`; // displaying the current month and year
+            daysTag.innerHTML = liTag;
+        }
+        renderCalendar();
+
+        prevNextIcon.forEach(icon => { // getting the previous and next icons
+            icon.addEventListener("click", () => { // adding a click event to both icons
+                currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
+
+                if (currMonth < 0 || currMonth > 11) {
+                    date = new Date(currYear, currMonth, date.getDate());
+                    currYear = date.getFullYear();
+                    currMonth = date.getMonth();
+                }
+                renderCalendar();
+            });
+        });
+
+        daysTag.addEventListener("click", (e) => {
+            if (e.target.classList.contains("clickable")) {
+                const eventsForDay = JSON.parse(e.target.getAttribute("data-events"));
+                const popupContentHTML = eventsForDay.map((event) => `<p>${event}</p>`).join("");
+                popupContent.innerHTML = popupContentHTML;
+                popup.style.display = "flex";
+            }
+        });
+
+        // Fungsi untuk menutup pop-up saat di luar pop-up diklik
+        popup.addEventListener("click", (e) => {
+            if (e.target === popup) {
+                popup.style.display = "none";
+            }
+        });
+
+        // Perlihatkan pop-up saat tanggal hari ini diklik
+        const today = document.querySelector(".active");
+        today.addEventListener("click", () => {
+            const eventsForDay = eventHistory[`${currYear}-${currMonth + 1}-${today.innerText}`];
+            if (eventsForDay) {
+                const popupContentHTML = eventsForDay.map((event) => `<p>${event}</p>`).join("");
+                popupContent.innerHTML = popupContentHTML;
+                popup.style.display = "flex";
+            }
+        });
+        // Fungsi untuk mengarahkan ke halaman dashboard saat tombol diklik
+        gotoDashboardButton.addEventListener("click", () => {
+            window.location.href = "dashboard.html"; // Ganti "dashboard.html" dengan URL halaman dashboard Anda
+        });
+    </script>
+</body>
+</html>

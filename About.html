@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #23242b;
+            color: #fff;
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        p {
+            font-size: 24px;
+            line-height: 1.6;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .creator-info {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .creator-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .return-button {
+            background-color: #23242b;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 20px 30px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .return-button:hover {
+            background-color: #2e2f36;
+        }
+
+        .footer {
+            background-color: #23242b;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .email-link {
+            color: #fff;
+            text-decoration: no uline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>About Us</h1>
+    </header>
+
+    <div class="container">
+        <div class="creator-info">
+            <img src="logokramat.png" alt="Web Creator" class="creator-image">
+            <p>
+                Website ini dibuat oleh Nova Hertanti. Mohon maaf jika masih banyak kekurangan dalam website ini. Jika kalian ingin memberikan saran atau feedback, <a class="email-link" href="mailto:hertantyuyee@gmail.com">hubungi kami</a>.
+            </p>
+        </div>
+        <button class="return-button" onclick="returnToDashboard()">Kembali ke Dashboard</button>
+    </div>
+    <div class="footer">
+        <p>Hubungi kami: <a class="email-link" href="mailto:hertantyuyee@gmail.com">hertantyuyee@gmail.com</a></p>
+    </div>
+    <script>
+        function returnToDashboard() {
+            // Ganti URL tujuan sesuai dengan halaman dashboard Anda
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+</html>
