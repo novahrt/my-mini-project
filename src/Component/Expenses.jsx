@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function IncomePage() {
+function ExpensesPage() {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([]); // State untuk menyimpan data dari API
   const [isLoading, setLoading] = useState(true);
 
   const toggleSidebar = () => {
@@ -38,22 +39,27 @@ function IncomePage() {
     // Implementasi penghapusan data di sini
   };
 
+  // Mengambil data awal saat komponen dimuat
   useEffect(() => {
-    // Fetch data dari mock API saat komponen dimuat
-    fetch('https://65364fc0c620ba9358ed4c20.mockapi.io/db/:endpoint') // Ganti URL sesuai dengan mock API Anda
-      .then((response) => response.json())
-      .then((data) => {
-        setData(data);
+    fetchExpensesData();
+  }, []);
+
+  const fetchExpensesData = () => {
+    // Mengambil data dari API
+    axios
+      .get('https://65364fc0c620ba9358ed4c20.mockapi.io/db/:endpoint')
+      .then((response) => {
+        setData(response.data);
         setLoading(false);
       })
       .catch((error) => {
         // Mengelola kesalahan (error)
       });
-  }, []);
+  };
 
   return (
     <div>
-      <h1>Income</h1>
+      <h1>Expenses</h1>
       <table>
         <thead>
           <tr>
@@ -73,15 +79,7 @@ function IncomePage() {
           ) : (
             data.map((item, index) => (
               <tr key={index}>
-                <td>{item.tanggal}</td>
-                <td>{item.rekening}</td>
-                <td>{item.jumlah}</td>
-                <td>{item.kategori}</td>
-                <td>{item.keterangan}</td>
-                <td>
-                  <button onClick={() => editRow(index)}>Edit</button>
-                  <button onClick={() => deleteRow(index)}>Delete</button>
-                </td>
+                {/* Tampilkan data dari API di sini */}
               </tr>
             ))
           )}
@@ -102,4 +100,4 @@ function IncomePage() {
   );
 }
 
-export default IncomePage;
+export default ExpensesPage;

@@ -8,14 +8,75 @@
     <!-- Google Font Link for Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <style>
+        .hamburger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+    z-index: 1;
+}
+
+/* Gaya untuk sidebar */
+.side-bar {
+    width: 250px;
+    min-height: 100vh;
+    background: #262931;
+    transition: left 0.5s;
+    left: -250px;
+    position: fixed;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
+}
+
+.side-bar.active-sidebar {
+    left: 0;
+}
+
+.user-p {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.user-p img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.user-p h4 {
+    color: #ccc;
+}
+
+.side-bar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.side-bar ul li {
+    margin: 0;
+    padding: 0;
+}
+
+.side-bar ul li a {
+    color: #eee;
+    text-decoration: none;
+    display: block;
+    padding: 15px 20px;
+}
+
+.side-bar ul li a:hover {
+    background-color: #127b8e;
+}
         /* Import Google font - Poppins */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
+
         body {
             display: flex;
             align-items: center;
@@ -24,6 +85,7 @@
             min-height: 100vh;
             background: #262931;
         }
+
         .wrapper {
             width: 100%;
             max-width: 450px;
@@ -31,15 +93,18 @@
             border-radius: 10px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
         }
+
         .wrapper header {
             display: flex;
             align-items: center;
             padding: 25px 30px 10px;
-            justify-content: space-between;
+            justify-content: space between;
         }
+
         header .icons {
             display: flex;
         }
+
         header .icons span {
             height: 38px;
             width: 38px;
@@ -51,51 +116,65 @@
             font-size: 1.9rem;
             user-select: none;
             border-radius: 50%;
+            transition: background-color 0.2s;
         }
+
         .icons span:last-child {
             margin-right: -10px;
         }
+
         header .icons span:hover {
             background: #f2f2f2;
         }
+
         header .current-date {
             font-size: 1.45rem;
             font-weight: 500;
+            color: #333;
         }
+
         .calendar {
             padding: 20px;
         }
+
         .calendar ul {
             display: flex;
             flex-wrap: wrap;
             list-style: none;
             text-align: center;
         }
+
+        .calendar .weeks li {
+            font-weight: 600;
+            color: #007BFF;
+            padding: 5px 0;
+        }
+
         .calendar .days {
             margin-bottom: 20px;
         }
+
         .calendar li {
             color: black;
             width: calc(100% / 7);
             font-size: 1.07rem;
             cursor: pointer;
+            transition: background-color 0.2s;
+            padding: 10px 0;
+            position: relative; /* Added */
         }
-        .calendar .weeks li {
-            font-weight: 500;
-            cursor: default;
+
+        .calendar .days li.active {
+            background: black;
+            color: #fff;
+            border-radius: 50%;
         }
-        .calendar .days li {
-            z-index: 1;
-            position: relative;
-            margin-top: 30px;
-        }
-        .days li.inactive {
+
+        .calendar .days li.inactive {
             color: #aaa;
         }
-        .days li.active {
-            color: #fff;
-        }
-        .days li::before {
+
+        .calendar .days li::before {
             position: absolute;
             content: "";
             left: 50%;
@@ -105,17 +184,22 @@
             z-index: -1;
             border-radius: 50%;
             transform: translate(-50%, -50%);
+            transition: background-color 0.2s;
         }
-        .days li.active::before {
-            background: black;
+
+        .calendar .days li.active::before {
+            background: #007BFF;
         }
-        .days li:not(.active):hover::before {
+
+        .calendar .days li:not(.active):hover::before {
             background: #f2f2f2;
         }
+
         .dashboard-button {
             text-align: center;
             padding: 20px;
         }
+
         .dashboard-button button {
             background-color: #007BFF;
             color: #fff;
@@ -124,10 +208,13 @@
             border-radius: 5px;
             cursor: pointer;
             margin-top: 20px;
+            transition: background-color 0.2s;
         }
+
         .dashboard-button button:hover {
             background-color: #0056b3;
         }
+
         .popup {
             display: none;
             background: rgba(0, 0, 0, 0.7);
@@ -136,9 +223,11 @@
             left: 0;
             width: 100%;
             height: 100%;
+            display: flex;
             align-items: center;
             justify-content: center;
         }
+
         .popup-content {
             background: #fff;
             padding: 20px;
@@ -148,7 +237,68 @@
         }
     </style>
 </head>
+
 <body>
+     <!-- Tombol hamburger untuk membuka/menutup sidebar -->
+     <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+
+     <!-- Sidebar -->
+     <div class="side-bar" id="sidebar">
+         <div class="user-p">
+             <img src="logo.png" alt="Logo">
+             <h4>Keuangan KU</h4>
+         </div>
+         <ul>
+             <li>
+                 <a href="Dashboard.html">
+                     <i class="fa fa-desktop" aria-hidden="true"></i>
+                     <span>Dashboard</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="Income.html">
+                     <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                     <span>Income</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="Expenses.html">
+                     <i class="fa fa-comment-o" aria-hidden="true"></i>
+                     <span>Expenses</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="Calendar.html">
+                     <i class="fa fa-comment-o" aria-hidden="true"></i>
+                     <span>Calendar</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="Chatbot.html">
+                     <i class="fa fa-comment-o" aria-hidden="true"></i>
+                     <span>Financial Planner</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="Calculator.html">
+                     <i class="fa fa-comment-o" aria-hidden="true"></i>
+                     <span>Calculator</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="About.html">
+                     <i class="fa fa-info-circle" aria-hidden="true"></i>
+                     <span>About</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="index.html">
+                     <i class="fa fa-power-off" aria-hidden="true"></i>
+                     <span>Logout</span>
+                 </a>
+             </li>
+         </ul>
+     </div>
     <div class="wrapper">
         <header>
             <p class="current-date"></p>
@@ -167,10 +317,7 @@
                 <li>Fri</li>
                 <li>Sat</li>
             </ul>
-            <ul class="days"></ul>
-        </div>
-        <div class="dashboard-button">
-            <button id="gotoDashboard">Kembali ke Dashboard</button>
+            <ul class="days" id="calendar-days"></ul>
         </div>
     </div>
     <div class="popup" id="popup">
@@ -179,7 +326,7 @@
         </div>
     </div>
     <script>
-        const daysTag = document.querySelector(".days");
+        const calendarDays = document.getElementById("calendar-days");
         const currentDate = document.querySelector(".current-date");
         const prevNextIcon = document.querySelectorAll(".icons span");
         const gotoDashboardButton = document.getElementById("gotoDashboard");
@@ -188,9 +335,23 @@
 
         // Sample data for event history
         const eventHistory = {
-            "2023-10-15": ["Transaction 1", "Transaction 2"],
-            "2023-10-22": ["Transaction 3"],
-            "2023-10-30": ["Transaction 4", "Transaction 5"],
+            "2023-10-01": {
+                income: ["Gaji: 5,000,000 (Gaji bulan ini)"],
+                expenses: [],
+            },
+            "2023-10-02": {
+                income: [],
+                expenses: ["Belanja Bulanan: 4,000,000 (Pengeluaran pertama)"],
+            },
+            "2023-10-06": {
+                income: [],
+                expenses: ["Makanan: 50,000 (Gacoan)"],
+            },
+            "2023-10-27": {
+                income: ["Freelance: 750,000 (Gaji Freelance)"],
+                expenses: [],
+            },
+            // Add more dates here...
         };
 
         // getting new date, current year, and month
@@ -200,41 +361,54 @@
 
         // storing full names of all months in an array
         const months = ["January", "February", "March", "April", "May", "June", "July",
-                    "August", "September", "October", "November", "December"];
+            "August", "September", "October", "November", "December"];
 
         const renderCalendar = () => {
-            let firstDayOfMonth = new Date(currYear, currMonth, 1).getDay(); // getting the first day of the month
-            let lastDateOfMonth = new Date(currYear, currMonth + 1, 0).getDate(); // getting the last date of the month
-            let lastDayOfMonth = new Date(currYear, currMonth, lastDateOfMonth).getDay(); // getting the last day of the month
-            let lastDateOfLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting the last date of the previous month
+            let firstDayOfMonth = new Date(currYear, currMonth, 1).getDay();
+            let lastDateOfMonth = new Date(currYear, currMonth + 1, 0).getDate();
+            let lastDayOfMonth = new Date(currYear, currMonth, lastDateOfMonth).getDay();
+            let lastDateOfLastMonth = new Date(currYear, currMonth, 0).getDate();
             let liTag = "";
 
-            for (let i = firstDayOfMonth; i > 0; i--) { // creating li for the last days of the previous month
+            for (let i = firstDayOfMonth; i > 0; i--) {
                 liTag += `<li class="inactive">${lastDateOfLastMonth - i + 1}</li>`;
             }
 
-            for (let i = 1; i <= lastDateOfMonth; i++) { // creating li for all the days of the current month
-                let isToday = i === date.getDate() && currMonth === date.getMonth() 
-                             && currYear === date.getFullYear() ? "active" : "";
+            for (let i = 1; i <= lastDateOfMonth; i++) {
+                let isToday = i === date.getDate() && currMonth === date.getMonth()
+                    && currYear === date.getFullYear() ? "active" : "";
                 const eventsForDay = eventHistory[`${currYear}-${currMonth + 1}-${i}`];
                 if (eventsForDay) {
-                    // If there are events for the day, add a click handler to show the pop-up
-                    liTag += `<li class="${isToday} clickable" data-events='${JSON.stringify(eventsForDay)}'>${i}</li>`;
+                    const incomeEvents = eventsForDay.income;
+                    const expensesEvents = eventsForDay.expenses;
+                    let contentHTML = "";
+
+                    if (incomeEvents && incomeEvents.length > 0) {
+                        contentHTML += `<p><strong>Income:</strong></p>`;
+                        contentHTML += incomeEvents.map((event) => `<p>${event}</p>`).join("");
+                    }
+
+                    if (expensesEvents && expensesEvents.length > 0) {
+                        contentHTML += `<p><strong>Expenses:</strong></p>`;
+                        contentHTML += expensesEvents.map((event) => `<p>${event}</p>`).join("");
+                    }
+
+                    liTag += `<li class="${isToday} clickable" data-content='${contentHTML}'>${i}</li>`;
                 } else {
                     liTag += `<li class="${isToday}">${i}</li>`;
                 }
             }
 
-            for (let i = lastDayOfMonth; i < 6; i++) { // creating li for the first days of the next month
+            for (let i = lastDayOfMonth; i < 6; i++) {
                 liTag += `<li class="inactive">${i - lastDayOfMonth + 1}</li>`;
             }
-            currentDate.innerText = `${months[currMonth]} ${currYear}`; // displaying the current month and year
-            daysTag.innerHTML = liTag;
+            currentDate.innerText = `${months[currMonth]} ${currYear}`;
+            calendarDays.innerHTML = liTag; // Updated the element where days are displayed
         }
         renderCalendar();
 
-        prevNextIcon.forEach(icon => { // getting the previous and next icons
-            icon.addEventListener("click", () => { // adding a click event to both icons
+        prevNextIcon.forEach(icon => {
+            icon.addEventListener("click", () => {
                 currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
 
                 if (currMonth < 0 || currMonth > 11) {
@@ -246,36 +420,31 @@
             });
         });
 
-        daysTag.addEventListener("click", (e) => {
+        calendarDays.addEventListener("click", (e) => {
             if (e.target.classList.contains("clickable")) {
-                const eventsForDay = JSON.parse(e.target.getAttribute("data-events"));
-                const popupContentHTML = eventsForDay.map((event) => `<p>${event}</p>`).join("");
-                popupContent.innerHTML = popupContentHTML;
+                const contentHTML = e.target.getAttribute("data-content");
+                popupContent.innerHTML = contentHTML;
                 popup.style.display = "flex";
             }
         });
 
-        // Fungsi untuk menutup pop-up saat di luar pop-up diklik
+        // Function to close the pop-up when clicking outside of it
         popup.addEventListener("click", (e) => {
             if (e.target === popup) {
                 popup.style.display = "none";
             }
         });
 
-        // Perlihatkan pop-up saat tanggal hari ini diklik
-        const today = document.querySelector(".active");
-        today.addEventListener("click", () => {
-            const eventsForDay = eventHistory[`${currYear}-${currMonth + 1}-${today.innerText}`];
-            if (eventsForDay) {
-                const popupContentHTML = eventsForDay.map((event) => `<p>${event}</p>`).join("");
-                popupContent.innerHTML = popupContentHTML;
-                popup.style.display = "flex";
-            }
-        });
-        // Fungsi untuk mengarahkan ke halaman dashboard saat tombol diklik
-        gotoDashboardButton.addEventListener("click", () => {
-            window.location.href = "dashboard.html"; // Ganti "dashboard.html" dengan URL halaman dashboard Anda
-        });
+        function toggleSidebar() {
+    var sidebar = document.getElementById('sidebar');
+    var wrapper = document.querySelector('.wrapper');
+    var hamburger = document.querySelector('.hamburger');
+
+    sidebar.classList.toggle('active-sidebar');
+    wrapper.classList.toggle('active-sidebar');
+    hamburger.classList.toggle('active-sidebar');
+}
+
     </script>
 </body>
 </html>

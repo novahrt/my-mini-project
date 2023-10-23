@@ -2,117 +2,69 @@
 <html>
 <head>
     <title>Income Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f3f3f3;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            text-align: center;
-            background-color: black; /* Ubah warna latar belakang */
-            color: #fff;
-            padding: 20px;
-            margin: 0;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 20px auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            background-color: #fff;
-        }
-
-        table, th, td {
-            border: 1px solid #ccc;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #12214e; /* Ubah warna latar belakang */
-            color: #fff;
-        }
-
-        select, input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .action-btn {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-
-        .modal-content {
-            background-color: #fff;
-            padding: 20px;
-            width: 60%;
-            margin: 10% auto;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .modal-content h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .modal-content input, .modal-content select {
-            width: 95%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .modal-content button {
-            background-color: black; /* Ubah warna latar belakang */
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .modal-content button:first-child {
-            background-color: #333; /* Ubah warna latar belakang */
-            margin-right: 10px;
-        }
-
-        .action-btn button {
-            background-color: black; /* Ubah warna latar belakang */
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .action-btn button:hover {
-            background-color: #333; /* Ubah warna latar belakang saat hover */
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="Income.css">
 </head>
 <body>
+    <!-- Tombol hamburger untuk membuka/menutup sidebar -->
+    <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+
+    <!-- Sidebar -->
+    <div class="side-bar" id="sidebar">
+        <div class="user-p">
+            <img src="logo.png" alt="Logo">
+            <h4>Keuangan KU</h4>
+        </div>
+        <ul>
+            <li>
+                <a href="Dashboard.html">
+                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="Income.html">
+                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                    <span>Income</span>
+                </a>
+            </li>
+            <li>
+                <a href="Expenses.html">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <span>Expenses</span>
+                </a>
+            </li>
+            <li>
+                <a href="Calendar.html">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <span>Calendar</span>
+                </a>
+            </li>
+            <li>
+                <a href="Chatbot.html">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <span>Financial Planner</span>
+                </a>
+            </li>
+            <li>
+                <a href="Calculator.html">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <span>Calculator</span>
+                </a>
+            </li>
+            <li>
+                <a href="About.html">
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <i class="fa fa-power-off" aria-hidden="true"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
     <h1>Income</h1>
     <table>
         <thead>
@@ -131,10 +83,9 @@
     </table>
     <div class="action-btn">
         <button onclick="openModal()">Tambah Data</button>
-
-        <button onclick="goToDashboard()">Kembali ke Dashboard</button>
     </div>
 
+    <!-- Pop-up untuk Tambah Data -->
     <div id="dataModal" class="modal">
         <div class="modal-content">
             <h2>Tambah Data</h2>
@@ -181,120 +132,6 @@
             <button onclick="closeEditModal()">Batal</button>
         </div>
     </div>
-
-    <script>
-        var data = [];
-
-        function openModal() {
-            var modal = document.getElementById('dataModal');
-            modal.style.display = 'block';
-        }
-
-        function closeModal() {
-            var modal = document.getElementById('dataModal');
-            modal.style.display = 'none';
-        }
-
-        function addRow() {
-            var date = document.getElementById('addDate').value;
-            var account = document.getElementById('addAccount').value;
-            var amount = document.getElementById('addAmount').value;
-            var category = document.getElementById('addCategory').value;
-            var description = document.getElementById('addDescription').value;
-
-            data.push({ date, account, amount, category, description });
-
-            updateTable();
-
-            closeModal();
-        }
-
-        function updateTable() {
-            var table = document.querySelector('table');
-            var tbody = table.querySelector('tbody');
-            tbody.innerHTML = '';
-
-            for (var i = 0; i < data.length; i++) {
-                var newRow = tbody.insertRow(-1);
-
-                var dateCell = newRow.insertCell(0);
-                var accountCell = newRow.insertCell(1);
-                var amountCell = newRow.insertCell(2);
-                var categoryCell = newRow.insertCell(3);
-                var descriptionCell = newRow.insertCell(4);
-                var actionCell = newRow.insertCell(5);
-
-                dateCell.innerHTML = data[i].date;
-                accountCell.innerHTML = data[i].account;
-                // Tampilkan jumlah dengan format mata uang Rupiah
-                amountCell.innerHTML = formatAsRupiah(data[i].amount);
-                categoryCell.innerHTML = data[i].category;
-                descriptionCell.innerHTML = data[i].description;
-
-                var editButton = document.createElement('button');
-                editButton.textContent = 'Edit';
-                editButton.onclick = function (index) {
-                    return function () {
-                        editRow(index);
-                    };
-                }(i);
-                var deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Delete';
-                deleteButton.onclick = function (index) {
-                    return function () {
-                        deleteRow(index);
-                    };
-                }(i);
-
-                actionCell.appendChild(editButton);
-                actionCell.appendChild(deleteButton);
-            }
-        }
-
-        function editRow(index) {
-            var modal = document.getElementById('editModal');
-            modal.style.display = 'block';
-
-            document.getElementById('editDate').value = data[index].date;
-            document.getElementById('editAccount').value = data[index].account;
-            document.getElementById('editAmount').value = data[index].amount;
-            document.getElementById('editCategory').value = data[index].category;
-            document.getElementById('editDescription').value = data[index].description;
-
-            var saveEditButton = document.getElementById('saveEditButton');
-            saveEditButton.onclick = function () {
-                data[index].date = document.getElementById('editDate').value;
-                data[index].account = document.getElementById('editAccount').value;
-                data[index].amount = document.getElementById('editAmount').value;
-                data[index].category = document.getElementById('editCategory').value;
-                data[index].description = document.getElementById('editDescription').value;
-                updateTable();
-                closeEditModal();
-            };
-        }
-
-        function closeEditModal() {
-            var modal = document.getElementById('editModal');
-            modal.style.display = 'none';
-        }
-
-        function deleteRow(index) {
-            data.splice(index, 1);
-            updateTable();
-        }
-
-        function formatAsRupiah(amount) {
-            // Format angka menjadi mata uang Rupiah dengan separator ribuan
-            return 'Rp ' + new Intl.NumberFormat('id-ID').format(amount);
-        }
-
-        function goToDashboard() {
-            window.location.href = 'dashboard.html';
-        }
-
-        // Inisialisasi awal dengan data contoh
-        data.push({ date: '2023-10-20', account: 'cash', amount: 100000, category: 'salary', description: 'Gaji bulan ini' });
-        updateTable();
-    </script>
+    <script src="Income.js"></script>
 </body>
 </html>

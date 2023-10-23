@@ -1,0 +1,181 @@
+.hamburger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+    z-index: 1;
+}
+
+/* Gaya untuk sidebar */
+.side-bar {
+    width: 250px;
+    min-height: 100vh;
+    background: #262931;
+    transition: left 0.5s;
+    left: -250px;
+    position: fixed;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
+}
+
+.side-bar.active-sidebar {
+    left: 0;
+}
+
+.user-p {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.user-p img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.user-p h4 {
+    color: #ccc;
+}
+
+.side-bar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.side-bar ul li {
+    margin: 0;
+    padding: 0;
+}
+
+.side-bar ul li a {
+    color: #eee;
+    text-decoration: none;
+    display: block;
+    padding: 15px 20px;
+}
+
+.side-bar ul li a:hover {
+    background-color: #127b8e;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    background-color: #23242b;
+    color: #fff;
+    padding: 20px;
+    margin: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #384552;
+    color: #fff;
+}
+
+select, input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.action-btn {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    width: 60%;
+    margin: 10% auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modal-content input, .modal-content select {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal-content button {
+    background-color: black;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content button:first-child {
+    background-color: black;
+    margin-right: 10px;
+}
+
+.action-btn button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.action-btn button:hover {
+    background-color: black;
+}
+
+/* Gaya tombol Delete */
+.action-btn button.delete-button {
+background-color: #ff4136; /* Warna merah */
+color: #fff;
+}
+
+.action-btn button.edit-button:hover {
+background-color: #0056b3; /* Warna biru yang lebih terang saat dihover */
+}
+
+.action-btn button.delete-button:hover {
+background-color: #d82f24; /* Warna merah yang lebih terang saat dihover */
+}

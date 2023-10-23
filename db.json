@@ -1,0 +1,39 @@
+{
+    "income": [
+      {
+        "id": 1,
+        "tanggal": "2023-10-01",
+        "rekening": "m-banking",
+        "jumlah": 5000000,
+        "kategori": "Gaji",
+        "keterangan": "Gaji bulan ini"
+      },
+      {
+        "id": 2,
+        "tanggal": "2023-10-27",
+        "rekening": "dompet digital",
+        "jumlah": 750000,
+        "kategori": "Freelance",
+        "keterangan": "Gaji Freelance"
+      }
+    ],
+    "expenses": [
+      {
+        "id": 1,
+        "tanggal": "2023-10-02",
+        "rekening": "m-banking",
+        "jumlah": 4000000,
+        "kategori": "Belanja Bulanan",
+        "keterangan": "Pengeluaran pertama"
+      },
+      {
+        "id": 2,
+        "tanggal": "2023-10-06",
+        "rekening": "Cash",
+        "jumlah": 50000,
+        "kategori": "Makanan",
+        "keterangan": "Gacoan"
+      }
+    ]
+  }
+  
