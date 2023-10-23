@@ -5,11 +5,14 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
         }
 
         h1 {
             text-align: center;
-            background-color: #23242b;
+            background-color: black; /* Ubah warna latar belakang */
             color: #fff;
             padding: 20px;
             margin: 0;
@@ -17,9 +20,10 @@
 
         table {
             border-collapse: collapse;
-            width: 80%;
+            width: 100%;
             margin: 20px auto;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
         }
 
         table, th, td {
@@ -32,19 +36,20 @@
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #12214e; /* Ubah warna latar belakang */
+            color: #fff;
         }
 
         select, input[type="text"] {
             width: 100%;
-            padding: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
 
         .action-btn {
-            display: flex;
-            flex-direction: column; /* Mengubah tata letak menjadi tumpukan vertikal */
-            align-items: center; /* Pusatkan tombol secara horizontal */
-            margin: 10px 0;
+            text-align: center;
+            margin: 20px 0;
         }
 
         .modal {
@@ -72,15 +77,15 @@
         }
 
         .modal-content input, .modal-content select {
-            width: 100%;
-            padding: 5px;
-            margin-bottom: 10px;
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
 
         .modal-content button {
-            background-color: #23242b;
+            background-color: black; /* Ubah warna latar belakang */
             color: #fff;
             border: none;
             padding: 10px 20px;
@@ -89,12 +94,12 @@
         }
 
         .modal-content button:first-child {
-            background-color: black;
+            background-color: #333; /* Ubah warna latar belakang */
             margin-right: 10px;
         }
 
         .action-btn button {
-            background-color: black;
+            background-color: black; /* Ubah warna latar belakang */
             color: #fff;
             border: none;
             padding: 10px 20px;
@@ -103,7 +108,7 @@
         }
 
         .action-btn button:hover {
-            background-color: navy;
+            background-color: #333; /* Ubah warna latar belakang saat hover */
         }
     </style>
 </head>
@@ -126,28 +131,28 @@
     </table>
     <div class="action-btn">
         <button onclick="openModal()">Tambah Data</button>
-        <br>
+
         <button onclick="goToDashboard()">Kembali ke Dashboard</button>
     </div>
 
     <div id="dataModal" class="modal">
         <div class="modal-content">
             <h2>Tambah Data</h2>
-            <input type="date" placeholder="Tanggal">
-            <select>
+            <input type="date" id="addDate" placeholder="Tanggal">
+            <select id="addAccount">
                 <option value="cash">Uang Tunai</option>
                 <option value="ewallet">Dompet Digital</option>
                 <option value="mbanking">M-Banking</option>
             </select>
-            <input type="text" placeholder="Jumlah">
-            <select>
+            <input type="text" id="addAmount" placeholder="Jumlah">
+            <select id="addCategory">
                 <option value="salary">Gaji</option>
                 <option value="savings">Tabungan</option>
                 <option value="refund">Pengembalian Dana</option>
                 <option value="investment">Investasi</option>
                 <option value="freelance">Freelance</option>
             </select>
-            <input type="text" placeholder="Keterangan">
+            <input type="text" id="addDescription" placeholder="Keterangan">
             <button onclick="addRow()">Tambah</button>
             <button onclick="closeModal()">Batal</button>
         </div>
@@ -157,13 +162,13 @@
     <div id="editModal" class="modal">
         <div class="modal-content">
             <h2>Edit Data</h2>
-            <input type="date" placeholder="Tanggal" id="editDate">
+            <input type="date" id="editDate" placeholder="Tanggal">
             <select id="editAccount">
                 <option value="cash">Uang Tunai</option>
                 <option value="ewallet">Dompet Digital</option>
                 <option value="mbanking">M-Banking</option>
             </select>
-            <input type="text" placeholder="Jumlah" id="editAmount">
+            <input type="text" id="editAmount" placeholder="Jumlah">
             <select id="editCategory">
                 <option value="salary">Gaji</option>
                 <option value="savings">Tabungan</option>
@@ -171,13 +176,15 @@
                 <option value="investment">Investasi</option>
                 <option value="freelance">Freelance</option>
             </select>
-            <input type="text" placeholder="Keterangan" id="editDescription">
-            <button onclick="updateRow()">Simpan</button>
+            <input type="text" id="editDescription" placeholder="Keterangan">
+            <button id="saveEditButton">Simpan</button>
             <button onclick="closeEditModal()">Batal</button>
         </div>
     </div>
 
     <script>
+        var data = [];
+
         function openModal() {
             var modal = document.getElementById('dataModal');
             modal.style.display = 'block';
@@ -189,83 +196,105 @@
         }
 
         function addRow() {
-            var table = document.querySelector('table');
-            var newRow = table.insertRow(-1);
+            var date = document.getElementById('addDate').value;
+            var account = document.getElementById('addAccount').value;
+            var amount = document.getElementById('addAmount').value;
+            var category = document.getElementById('addCategory').value;
+            var description = document.getElementById('addDescription').value;
 
-            var dateCell = newRow.insertCell(0);
-            var accountCell = newRow.insertCell(1);
-            var amountCell = newRow.insertCell(2);
-            var categoryCell = newRow.insertCell(3);
-            var descriptionCell = newRow.insertCell(4);
-            var actionCell = newRow.insertCell(5);
+            data.push({ date, account, amount, category, description });
 
-            dateCell.innerHTML = '<input type="date">';
-            accountCell.innerHTML = '<select><option value="cash">Uang Tunai</option><option value="ewallet">Dompet Digital</option><option value="mbanking">M-Banking</option></select>';
-            amountCell.innerHTML = '<input type="text" placeholder="Jumlah">';
-            categoryCell.innerHTML = '<select><option value="salary">Gaji</option><option value="savings">Tabungan</option><option value="refund">Pengembalian Dana</option><option value="investment">Investasi</option><option value="freelance">Freelance</option></select>';
-            descriptionCell.innerHTML = '<input type="text" placeholder="Keterangan">';
-            actionCell.innerHTML = '<button onclick="editRow(this)">Edit</button> <button onclick="deleteRow(this)">Delete</button>';
+            updateTable();
 
             closeModal();
         }
 
-        // Fungsi untuk menampilkan pop-up edit data
-        function editRow(btn) {
+        function updateTable() {
+            var table = document.querySelector('table');
+            var tbody = table.querySelector('tbody');
+            tbody.innerHTML = '';
+
+            for (var i = 0; i < data.length; i++) {
+                var newRow = tbody.insertRow(-1);
+
+                var dateCell = newRow.insertCell(0);
+                var accountCell = newRow.insertCell(1);
+                var amountCell = newRow.insertCell(2);
+                var categoryCell = newRow.insertCell(3);
+                var descriptionCell = newRow.insertCell(4);
+                var actionCell = newRow.insertCell(5);
+
+                dateCell.innerHTML = data[i].date;
+                accountCell.innerHTML = data[i].account;
+                // Tampilkan jumlah dengan format mata uang Rupiah
+                amountCell.innerHTML = formatAsRupiah(data[i].amount);
+                categoryCell.innerHTML = data[i].category;
+                descriptionCell.innerHTML = data[i].description;
+
+                var editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.onclick = function (index) {
+                    return function () {
+                        editRow(index);
+                    };
+                }(i);
+                var deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = function (index) {
+                    return function () {
+                        deleteRow(index);
+                    };
+                }(i);
+
+                actionCell.appendChild(editButton);
+                actionCell.appendChild(deleteButton);
+            }
+        }
+
+        function editRow(index) {
             var modal = document.getElementById('editModal');
             modal.style.display = 'block';
 
-            // Mendapatkan data dari baris yang akan diedit
-            var row = btn.parentNode.parentNode;
-            var cells = row.getElementsByTagName('td');
+            document.getElementById('editDate').value = data[index].date;
+            document.getElementById('editAccount').value = data[index].account;
+            document.getElementById('editAmount').value = data[index].amount;
+            document.getElementById('editCategory').value = data[index].category;
+            document.getElementById('editDescription').value = data[index].description;
 
-            // Mengisi nilai-nilai pada pop-up edit dengan data yang ada
-            document.getElementById('editDate').value = cells[0].textContent;
-            document.getElementById('editAccount').value = cells[1].textContent;
-            document.getElementById('editAmount').value = cells[2].textContent;
-            document.getElementById('editCategory').value = cells[3].textContent;
-            document.getElementById('editDescription').value = cells[4].textContent;
+            var saveEditButton = document.getElementById('saveEditButton');
+            saveEditButton.onclick = function () {
+                data[index].date = document.getElementById('editDate').value;
+                data[index].account = document.getElementById('editAccount').value;
+                data[index].amount = document.getElementById('editAmount').value;
+                data[index].category = document.getElementById('editCategory').value;
+                data[index].description = document.getElementById('editDescription').value;
+                updateTable();
+                closeEditModal();
+            };
         }
 
-        // Fungsi untuk menutup pop-up edit data
         function closeEditModal() {
             var modal = document.getElementById('editModal');
             modal.style.display = 'none';
         }
 
-        // Fungsi untuk menyimpan data yang telah diedit
-        function updateRow() {
-            var table = document.querySelector('table');
-
-            // Mendapatkan data dari input pop-up edit
-            var updatedDate = document.getElementById('editDate').value;
-            var updatedAccount = document.getElementById('editAccount').value;
-            var updatedAmount = document.getElementById('editAmount').value;
-            var updatedCategory = document.getElementById('editCategory').value;
-            var updatedDescription = document.getElementById('editDescription').value;
-
-            // Mendapatkan baris yang akan diedit
-            var modal = document.getElementById('editModal');
-            var rowToEdit = modal.parentNode.parentNode;
-
-            // Mengisi nilai-nilai dalam baris dengan data yang telah diedit
-            rowToEdit.cells[0].textContent = updatedDate;
-            rowToEdit.cells[1].textContent = updatedAccount;
-            rowToEdit.cells[2].textContent = updatedAmount;
-            rowToEdit.cells[3].textContent = updatedCategory;
-            rowToEdit.cells[4].textContent = updatedDescription;
-
-            closeEditModal(); // Tutup pop-up edit setelah menyimpan data
+        function deleteRow(index) {
+            data.splice(index, 1);
+            updateTable();
         }
 
-        function deleteRow(btn) {
-            var row = btn.parentNode.parentNode;
-            row.parentNode.removeChild(row);
+        function formatAsRupiah(amount) {
+            // Format angka menjadi mata uang Rupiah dengan separator ribuan
+            return 'Rp ' + new Intl.NumberFormat('id-ID').format(amount);
         }
 
         function goToDashboard() {
-            // Tambahkan kode di sini untuk mengarahkan pengguna kembali ke halaman dashboard
             window.location.href = 'dashboard.html';
         }
+
+        // Inisialisasi awal dengan data contoh
+        data.push({ date: '2023-10-20', account: 'cash', amount: 100000, category: 'salary', description: 'Gaji bulan ini' });
+        updateTable();
     </script>
 </body>
 </html>

@@ -1,58 +1,138 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, Component } from 'react';
+import axios from 'axios';
 
-class IncomePage extends Component {
-  // Fungsi-fungsi dan logika komponen React Anda akan ditempatkan di sini
+const formatAsRupiah = (amount) => {
+  return 'Rp ' + new Intl.NumberFormat('id-ID').format(amount);
+};
 
-  render() {
-    return (
-      <div>
-        <h1>Income</h1>
-        <table>
-          <thead>
+function IncomePage() {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const [editedDataIndex, setEditedDataIndex] = useState(null);
+  const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const addRow = () => {
+    // Implementasi penambahan data di sini
+    // Pastikan untuk mengonversi jumlah menjadi angka sebelum menyimpannya
+    // dan menutup modal setelah berhasil menambahkan data
+    closeModal();
+  };
+
+  const updateTable = () => {
+    // Implementasi pembaruan tabel di sini
+  };
+
+  const editRow = (index) => {
+    // Implementasi penyuntingan data di sini
+    // Munculkan modal penyuntingan dengan data yang sesuai
+    setEditModalOpen(true);
+    setEditedDataIndex(index);
+  };
+
+  const closeEditModal = () => {
+    // Implementasi penutupan modal penyuntingan
+    setEditModalOpen(false);
+  };
+
+  const deleteRow = (index) => {
+    // Implementasi penghapusan data di sini
+  };
+
+  useEffect(() => {
+    // Fetch data awal saat komponen dimuat
+    fetchIncomeData();
+  }, []);
+
+  const fetchIncomeData = () => {
+    // Implementasi pengambilan data melalui API
+    axios
+      .get('https://platform.openai.com/account/api-keys/api/income')
+      .then((response) => {
+        setData(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        // Mengelola kesalahan (error)
+      });
+  };
+
+  const goToDashboard = () => {
+    // Implementasi navigasi kembali ke dashboard
+  };
+
+  return (
+    <div>
+      <h1>Income</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Tanggal</th>
+            <th>Pilih Rekening</th>
+            <th>Jumlah</th>
+            <th>Kategori</th>
+            <th>Keterangan</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {isLoading ? (
             <tr>
-              <th>Tanggal</th>
-              <th>Pilih Rekening</th>
-              <th>Jumlah</th>
-              <th>Kategori</th>
-              <th>Keterangan</th>
-              <th>Action</th>
+              <td colSpan="6">Loading...</td>
             </tr>
-          </thead>
-          <tbody>
-            {/* Tabel isi data akan muncul di sini */}
-          </tbody>
-        </table>
-        <div className="action-btn">
-          <button onClick={this.openModal}>Tambah Data</button>
-          <br />
-          <button onClick={this.goToDashboard}>Kembali ke Dashboard</button>
-        </div>
-
-        <div id="dataModal" className="modal">
+          ) : (
+            data.map((item, index) => (
+              <tr key={index}>
+                <td>{item.tanggal}</td>
+                <td>{item.rekening}</td>
+                <td>{item.jumlah}</td>
+                <td>{item.kategori}</td>
+                <td>{item.keterangan}</td>
+                <td>
+                  <button onClick={() => editRow(index)}>Edit</button>
+                  <button onClick={() => deleteRow(index)}>Delete</button>
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+      <div className="action-btn">
+        <button onClick={openModal}>Tambah Data</button>
+        <button onClick={goToDashboard}>Kembali ke Dashboard</button>
+      </div>
+      {/* Modal untuk menambah data */}
+      {isModalOpen && (
+        <div className="modal">
           <div className="modal-content">
             <h2>Tambah Data</h2>
-            <input type="date" placeholder="Tanggal" />
-            <select>
-              <option value="cash">Uang Tunai</option>
-              <option value="ewallet">Dompet Digital</option>
-              <option value="mbanking">M-Banking</option>
-            </select>
-            <input type="text" placeholder="Jumlah" />
-            <select>
-              <option value="salary">Gaji</option>
-              <option value="savings">Tabungan</option>
-              <option value="refund">Pengembalian Dana</option>
-              <option value="investment">Investasi</option>
-              <option value="freelance">Freelance</option>
-            </select>
-            <input type="text" placeholder="Keterangan" />
-            <button onClick={this.addRow}>Tambah</button>
-            <button onClick={this.closeModal}>Batal</button>
+            {/* Input dan tombol tambah data */}
           </div>
         </div>
-      </div>
-    );
-  }
+      )}
+      {/* Modal untuk menyunting data */}
+      {isEditModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Edit Data</h2>
+            {/* Input dan tombol penyuntingan data */}
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default IncomePage;
+class ClassBasedIncomePage extends Component {
+  // ... Implementasi komponen berbasis kelas ...
+}
+
+export { IncomePage, ClassBasedIncomePage };
