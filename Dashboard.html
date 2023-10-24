@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+
     <style>
         /* Gaya untuk sidebar yang muncul */
         .active-sidebar {
@@ -18,13 +20,13 @@
             color: #fff;
             z-index: 1;
         }
+
         * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
-        
 
         /* Gaya header */
         .header {
@@ -92,6 +94,64 @@
 
         .side-bar ul li a:hover {
             background-color: #0085ff;
+        }
+
+        .total-box {
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
+            margin: 10px;
+        }
+
+        .total-box h2 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .income-box {
+            background: #36A2EB;
+            color: #fff;
+        }
+
+        .expenses-box {
+            background: #4CAF50;
+            color: #fff;
+        }
+
+        .data-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .data-box span {
+            margin-right: 10px;
+        }
+
+        /* Gaya untuk select */
+        .data-box select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Gaya untuk opsi dalam select */
+        .data-box select option {
+            font-size: 16px;
+        }
+
+        .chart-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .chart {
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
+            margin: 10px;
+            flex: 1;
         }
     </style>
 </head>
@@ -162,16 +222,114 @@
         <div class="header">
             <i class="fa fa-bars" onclick="toggleSidebar()"></i>
             <h1>Selamat Datang di Keuangan Ku</h1>
+        </div>
+
+        <!-- Total Box untuk Income -->
+        <div class="total-box income-box">
+            <h2>Total Data Income</h2>
+            <div class="data-box">
+                <span>9000</span>
+                <select id="incomeDateOption" onchange="updateIncomeData()">
+                    <option value="week">Minggu</option>
+                    <option value="month">Bulan</option>
+                    <option value="year">Tahun</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Total Box untuk Expenses -->
+        <div class="total-box expenses-box">
+            <h2>Total Data Expenses</h2>
+            <div class="data-box">
+                <span>5000</span>
+                <select id="expensesDateOption" onchange="updateExpensesData()">
+                    <option value="week">Minggu</option>
+                    <option value="month">Bulan</option>
+                    <option value="year">Tahun</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Container untuk grafik -->
+        <div class="chart-container">
+            <!-- Pie Chart untuk Income dan Expenses -->
+            <div class="chart">
+                <h2>Grafik Pendapatan dan Pengeluaran</h2>
+                <canvas id="myPieChart" width="300" height="300"></canvas>
+            </div>
+
+            <!-- Bar Chart untuk Kategori Pengeluaran dan Pemasukan -->
+            <div class="chart">
+                <h2>Grafik Kategori Pengeluaran dan Pemasukan</h2>
+                <canvas id="myBarChart" width="300" height="300"></canvas>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript untuk mengontrol sidebar -->
+    <!-- JavaScript untuk mengontrol sidebar dan grafik -->
     <script>
         function toggleSidebar() {
             var sidebar = document.getElementById("sidebar");
             sidebar.classList.toggle("active-sidebar");
         }
+
+        // Kode JavaScript untuk mengupdate data Income berdasarkan pilihan periode
+        function updateIncomeData() {
+            // Tambahkan kode untuk mengupdate data Income di sini
+        }
+
+        // Kode JavaScript untuk mengupdate data Expenses berdasarkan pilihan periode
+        function updateExpensesData() {
+            // Tambahkan kode untuk mengupdate data Expenses di sini
+        }
+
+        // Kode JavaScript untuk membuat Pie Chart
+        var pieCtx = document.getElementById("myPieChart").getContext("2d");
+        var pieData = {
+            labels: ["Income", "Expenses"],
+            datasets: [{
+                data: [5000000, 3000000],
+                backgroundColor: ["#36A2EB", "#4CAF50"]
+            }]
+        };
+
+        var pieChart = new Chart(pieCtx, {
+            type: "pie",
+            data: pieData,
+        });
+
+        // Kode JavaScript untuk membuat Bar Chart
+        var barCtx = document.getElementById("myBarChart").getContext("2d");
+        var barData = {
+            labels: ["Gaji", "Makanan", "Hiburan", "Transportasi", "Tagihan"],
+            datasets: [
+                {
+                    label: "Pemasukan",
+                    backgroundColor: "rgba(54, 162, 235, 0.5)",
+                    data: [5000000, 0, 0, 0, 0],
+                },
+                {
+                    label: "Pengeluaran",
+                    backgroundColor: "rgba(76, 175, 80, 0.5)",
+                    data: [0, 1000000, 500000, 300000, 500000],
+                },
+            ],
+        };
+
+        var barChart = new Chart(barCtx, {
+            type: "bar",
+            data: barData,
+            options: {
+                scales: {
+                    xAxes: [{
+                        stacked: true,
+                    }],
+                    yAxes: [{
+                        stacked: true,
+                    }],
+                },
+            },
+        });
     </script>
 </body>
 </html>

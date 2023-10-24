@@ -108,8 +108,3 @@ function formatAsRupiah(amount) {
 // Inisialisasi awal dengan data contoh
 data.push({ date: '2023-10-20', account: 'cash', amount: 100000, category: 'tagihan', description: 'Gaji bulan ini' });
 updateTable();
-// Fungsi togglebar
-function toggleSidebar() {
-var sidebar = document.getElementById('sidebar');
-sidebar.classList.toggle('active-sidebar');
-}

@@ -106,13 +106,3 @@ const calendarDays = document.getElementById("calendar-days");
                 popup.style.display = "none";
             }
         });
-
-        function toggleSidebar() {
-    var sidebar = document.getElementById('sidebar');
-    var wrapper = document.querySelector('.wrapper');
-    var hamburger = document.querySelector('.hamburger');
-
-    sidebar.classList.toggle('active-sidebar');
-    wrapper.classList.toggle('active-sidebar');
-    hamburger.classList.toggle('active-sidebar');
-}
