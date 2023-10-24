@@ -1,0 +1,139 @@
+.hamburger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+    z-index: 1;
+}
+
+/* Gaya untuk sidebar */
+.side-bar {
+    width: 250px;
+    min-height: 100vh;
+    background: #2d2d2d;
+    transition: left 0.5s;
+    left: -250px;
+    position: fixed;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
+    top: 0;
+}
+
+.side-bar.active-sidebar {
+    left: 0;
+}
+
+.user-p {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 0;
+}
+
+.user-p img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.user-p h4 {
+    color: #ccc;
+}
+
+.side-bar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.side-bar ul li {
+    margin: 0;
+    padding: 0;
+}
+
+.side-bar ul li a {
+    color: #eee;
+    text-decoration: none;
+    display: block;
+    padding: 15px 20px;
+}
+
+.side-bar ul li a:hover {
+    background-color: #0085ff;
+}
+
+ /* Gaya container chatbot */
+.chat-container {
+    max-width: 500px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 15px auto; /* Menambahkan margin atas dan bawah */
+    overflow: hidden;
+}
+
+/* Gaya pesan pengguna dan pesan bot */
+.user-text, .bot-text {
+    background-color: #69b4ff;
+    color: #333;
+    padding: 10px;
+    border-radius: none;
+    clear: both; /* Membersihkan float */
+    margin: 10px 0; /* Batas margin atas dan bawah */
+}
+
+.user-text {
+    background-color: #006fff;
+    color: #fff;
+}
+
+body {
+    background-color: #1E1E1E; /* Warna latar belakang halaman */
+    font-family: Arial, sans-serif; /* Jenis font untuk seluruh halaman */
+    margin: 0; /* Menghapus margin bawaan halaman */
+    padding: 0; /* Menghapus padding bawaan halaman */
+}
+
+/* Gaya tulisan "Halo, saya chatbot" */
+.bot-greeting {
+    background-color: #69b4ff;
+    color: #333;
+    padding: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    clear: both; /* Membersihkan float */
+}
+
+/* Gaya input dari pengguna */
+.input-container {
+    display: flex;
+    background-color: #f1f0f0;
+    border-radius: 10px;
+    margin: 10px auto; /* Menengahkan input container */
+    overflow: hidden;
+    width: 800px;
+    text-align: center; /* Jika perlu untuk memusatkan isi input container */
+}
+
+.user-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    font-size: 14px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.send-button {
+    width: 10%;
+    padding: 10px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    font-size: 14px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Efek transisi saat hover */
+}
+.send-button:hover {
+    background-color: #007bff; /* Warna latar belakang saat tombol dihover */
+}
