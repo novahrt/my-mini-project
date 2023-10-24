@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './Expenses.css';
 
 function ExpensesPage() {
   const [isModalOpen, setModalOpen] = useState(false);

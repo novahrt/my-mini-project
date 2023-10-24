@@ -12,7 +12,7 @@
 .side-bar {
     width: 250px;
     min-height: 100vh;
-    background: #262931;
+    background: #2d2d2d;
     transition: left 0.5s;
     left: -250px;
     position: fixed;
@@ -55,19 +55,19 @@
 }
 
 .side-bar ul li a:hover {
-    background-color: #127b8e;
+    background-color: #0085ff;
 }
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f3f3f3;
+    background-color: #1E1E1E;
     margin: 0;
     padding: 0;
 }
 
 h1 {
     text-align: center;
-    background-color: #23242b;
+    background-color: #2d2d2d;
     color: #fff;
     padding: 20px;
     margin: 0;
@@ -91,8 +91,8 @@ th, td {
 }
 
 th {
-    background-color: #384552;
-    color: #fff;
+    background-color: #006fff;
+    color: #e1ffff;
 }
 
 select, input[type="text"] {
@@ -118,7 +118,7 @@ select, input[type="text"] {
 }
 
 .modal-content {
-    background-color: #fff;
+    background-color: #1E1E1E;
     padding: 20px;
     width: 60%;
     margin: 10% auto;
@@ -129,6 +129,7 @@ select, input[type="text"] {
 .modal-content h2 {
     text-align: center;
     margin-bottom: 20px;
+    color: #fff;
 }
 
 .modal-content input, .modal-content select {
@@ -140,7 +141,7 @@ select, input[type="text"] {
 }
 
 .modal-content button {
-    background-color: black;
+    background-color: #454545;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -154,7 +155,7 @@ select, input[type="text"] {
 }
 
 .action-btn button {
-    background-color: #333;
+    background-color: #0085ff;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -163,19 +164,5 @@ select, input[type="text"] {
 }
 
 .action-btn button:hover {
-    background-color: black;
-}
-
-/* Gaya tombol Delete */
-.action-btn button.delete-button {
-background-color: #ff4136; /* Warna merah */
-color: #fff;
-}
-
-.action-btn button.edit-button:hover {
-background-color: #0056b3; /* Warna biru yang lebih terang saat dihover */
-}
-
-.action-btn button.delete-button:hover {
-background-color: #d82f24; /* Warna merah yang lebih terang saat dihover */
+    background-color: #69b4ff;
 }

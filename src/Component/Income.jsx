@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Income.css';
 
 function IncomePage() {
   const [isModalOpen, setModalOpen] = useState(false);

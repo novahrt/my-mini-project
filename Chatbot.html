@@ -1,141 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Planner Chatbot</title>
+    <!-- Gaya CSS Anda di sini -->
     <style>
-        body {
-            background-color: #f7f7f7;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .chatbot-container {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            max-width: 600px;
-            width: 75%;
-            text-align: left;
-        }
-        .chat-header {
-            background-color: #23242b;
-            color: #fff;
-            padding: 10px 20px;
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-        }
-        .chat-messages {
-            height: 400px;
-            overflow-y: scroll;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .user-message, .bot-message {
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-            font-size: 18px;
-        }
-        .user-message {
-            background-color: #f2f2f2;
-        }
-        .bot-message {
-            background-color: #eceff1;
-        }
-        .input-container {
-            margin-top: 10px;
-            display: flex;
-        }
-        .chat-input {
-            flex: 1;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 18px;
-        }
-        .send-button {
-            background-color: black;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-        .return-button {
-            margin-top: 20px;
-            background-color: #1e1f2b;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
+        .hamburger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+    z-index: 1;
+}
+
+/* Gaya untuk sidebar */
+.side-bar {
+    width: 250px;
+    min-height: 100vh;
+    background: #2d2d2d;
+    transition: left 0.5s;
+    left: -250px;
+    position: fixed;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
+}
+
+.side-bar.active-sidebar {
+    left: 0;
+}
+
+.user-p {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.user-p img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.user-p h4 {
+    color: #ccc;
+}
+
+.side-bar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.side-bar ul li {
+    margin: 0;
+    padding: 0;
+}
+
+.side-bar ul li a {
+    color: #eee;
+    text-decoration: none;
+    display: block;
+    padding: 15px 20px;
+}
+
+.side-bar ul li a:hover {
+    background-color: #0085ff;
+}
+ /* Gaya container chatbot */
+.chat-container {
+    max-width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 15px auto; /* Menambahkan margin atas dan bawah */
+    overflow: hidden;
+}
+
+/* Gaya pesan pengguna dan pesan bot */
+.user-text, .bot-text {
+    background-color: #f1f0f0;
+    color: #333;
+    padding: 10px;
+    border-radius: 10px;
+    clear: both; /* Membersihkan float */
+    margin: 10px 0; /* Batas margin atas dan bawah */
+}
+
+.user-text {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Gaya container chatbot */
+.chat-container {
+    max-width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 15px auto; /* Menambahkan margin atas dan bawah */
+    overflow: hidden;
+}
+
+/* Gaya pesan pengguna dan pesan bot */
+.user-text, .bot-text {
+    background-color: #f1f0f0;
+    color: #333;
+    padding: 10px;
+    border-radius: 10px;
+    clear: both; /* Membersihkan float */
+    margin: 10px 0; /* Batas margin atas dan bawah */
+}
+
+.user-text {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Gaya tulisan "Halo, saya chatbot" */
+.bot-greeting {
+    background-color: #f1f0f0;
+    padding: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    clear: both; /* Membersihkan float */
+}
+
+/* Gaya input dari pengguna */
+.input-container {
+    display: flex;
+    background-color: #f1f0f0;
+    border-radius: 10px;
+    margin: 10px auto; /* Menengahkan input container */
+    overflow: hidden;
+    width: 800px;
+    text-align: center; /* Jika perlu untuk memusatkan isi input container */
+}
+
+.user-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    font-size: 14px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.send-button {
+    width: 10%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 14px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+}
+
+
     </style>
 </head>
 <body>
-    <div class="chatbot-container">
-        <div class="chat-header">
-            Financial Planner
+    <body>
+        <!-- Tombol hamburger untuk membuka/menutup sidebar -->
+        <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+   
+        <!-- Sidebar -->
+        <div class="side-bar" id="sidebar">
+            <div class="user-p">
+                <img src="logo.png" alt="Logo">
+                <h4>Keuangan KU</h4>
+            </div>
+            <ul>
+                <li>
+                    <a href="Dashboard.html">
+                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Income.html">
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        <span>Income</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Expenses.html">
+                        <i class="fa fa-comment-o" aria-hidden="true"></i>
+                        <span>Expenses</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Calendar.html">
+                        <i class="fa fa-comment-o" aria-hidden="true"></i>
+                        <span>Calendar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Chatbot.html">
+                        <i class="fa fa-comment-o" aria-hidden="true"></i>
+                        <span>Financial Planner</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Calculator.html">
+                        <i class="fa fa-comment-o" aria-hidden="true"></i>
+                        <span>Calculator</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="About.html">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-power-off" aria-hidden="true"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
         </div>
-        <div class="chat-messages" id="chat-messages">
-            <!-- Pesan-pesan chat akan ditampilkan di sini -->
-        </div>
-        <div class="input-container">
-            <input type="text" id="user-input" class="chat-input" placeholder="Ketik pesan...">
-            <button id="send-button" class="send-button">Kirim</button>
-        </div>
-        <button class="return-button" onclick="returnToDashboard()">Kembali ke Dashboard</button>
+    <div class="chat-container" id="chat">
+        <!-- Chat bot greeting (atas) -->
+        <div class="bot-greeting">Halo, saya chatbot. Saya akan membantu Anda terkait masalah keuangan Anda. Tanyakan saja pada saya!</div>
     </div>
-
+    <div class="input-container">
+        <input class="user-input" type="text" id="user-input" placeholder="Ketik pesan Anda di sini...">
+        <button class="send-button" id="send-button">Kirim</button>
+    </div>
     <script>
-        const chatMessages = document.getElementById('chat-messages');
+        // Dapatkan elemen-elemen HTML yang diperlukan
         const userInput = document.getElementById('user-input');
         const sendButton = document.getElementById('send-button');
+        const chat = document.getElementById('chat');
 
-        sendButton.addEventListener('click', () => {
-            const userMessage = userInput.value.trim();
-            if (userMessage !== '') {
-                appendUserMessage(userMessage);
-                // Gantilah dengan logika respons bot yang sesuai
-                const botResponse = generateBotResponse(userMessage);
-                appendBotMessage(botResponse);
-                userInput.value = '';
+        // Tambahkan event listener untuk tombol Kirim
+        sendButton.addEventListener('click', function() {
+            const userMessage = userInput.value.trim().toLowerCase();
+
+            // Menambahkan pesan pengguna ke tampilan chat
+            addMessage('User: ' + userMessage, 'user');
+
+            // Hanya tanggapi pertanyaan seputar keuangan
+            if (userMessage.includes('keuangan')) {
+                if (userMessage.includes('rencana keuangan')) {
+                    respondToFinancialPlanning();
+                } else if (userMessage.includes('investasi')) {
+                    respondToInvesting();
+                } else {
+                    respondToUnavailable();
+                }
+            } else if (userMessage.includes('investasi')) {
+                respondToInvesting();
+            } else {
+                respondToUnavailable();
             }
+
+            // Membersihkan input pengguna setelah mengirim
+            userInput.value = '';
         });
 
-        function returnToDashboard() {
-            // Ganti URL tujuan sesuai dengan dashboard Anda
-            window.location.href = 'dashboard.html';
+        // Fungsi untuk menambahkan pesan ke tampilan chat
+        function addMessage(message, userType) {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = message;
+            if (userType === 'user') {
+                messageElement.classList.add('user-text');
+            } else {
+                messageElement.classList.add('bot-text');
+            }
+            // Menambahkan pesan di bawah pesan-pesan sebelumnya
+            chat.appendChild(messageElement);
         }
 
-        // Fungsi untuk menambahkan pesan pengguna ke tampilan
-        function appendUserMessage(message) {
-            const userMessageElement = document.createElement('div');
-            userMessageElement.className = 'user-message';
-            userMessageElement.textContent = message;
-            chatMessages.appendChild(userMessageElement);
-            chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll ke pesan terbaru
+        // Fungsi-fungsi untuk menanggapi pertanyaan
+        function respondToFinancialPlanning() {
+    const financialPlanningSteps = [
+        'Anda ingin tahu cara membuat rencana keuangan. Berikut adalah langkah-langkahnya:',
+        '1. Tentukan tujuan keuangan anda',
+        '2. Analisis dan kelola pengeluaran anda',
+        '3. Pertimbangkan untuk mencari pendapatan tambahan, seperti freelance atau investasi',
+        '4. Siapkan dana darurat',
+        '5. Evaluasi dan kelola utang anda. Namun, lebih baik tidak memiliki utang.',
+        '6. Mulailah untuk investasi',
+        '7. Lindungi aset anda dengan asuransi',
+        '8. Buatlah perencanaan pensiun',
+        '9. Evaluasi rencana keuangan yang sudah anda buat setidaknya setahun sekali',
+        '10. Konsultasikan dengan Ahli Keuangan'
+    ];
+
+    addMessage('Bot: ' + financialPlanningSteps.join('\n'), 'bot');
+}
+
+
+        function respondToInvesting() {
+    const investingSteps = [
+        'Anda ingin tahu cara berinvestasi. Berikut adalah beberapa langkah awal:',
+        '1. Tentukan tujuan investasi',
+        '2. Buatlah perencanaan keuangan sebelum berinvestasi',
+        '3. Memahami konsep dasar investasi',
+        '4. Tentukan resiko dari investasi yang anda pilih',
+        '5. Mulai berinvestasi',
+        '6. Lakukan investasi secara konsisten dan disiplin'
+    ];
+
+    addMessage('Bot: ' + investingSteps.join('\n'), 'bot');
+}
+
+
+        function respondToUnavailable() {
+            addMessage('Bot: Maaf, pertanyaan Anda tidak tersedia atau Anda hanya bisa menanyakan masalah keuangan.', 'bot');
         }
 
-        // Fungsi untuk menambahkan pesan bot ke tampilan
-        function appendBotMessage(message) {
-            const botMessageElement = document.createElement('div');
-            botMessageElement.className = 'bot-message';
-            botMessageElement.textContent = message;
-            chatMessages.appendChild(botMessageElement);
-            chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll ke pesan terbaru
-        }
+        function toggleSidebar() {
+    var sidebar = document.getElementById('sidebar');
+    var wrapper = document.querySelector('.wrapper');
+    var hamburger = document.querySelector('.hamburger');
 
-        // Gantilah dengan logika respons bot yang sesuai
-        function generateBotResponse(userMessage) {
-            return 'Terima kasih atas pertanyaan Anda. Saya siap membantu Anda dalam perencanaan keuangan.';
-        }
+    sidebar.classList.toggle('active-sidebar');
+    wrapper.classList.toggle('active-sidebar');
+    hamburger.classList.toggle('active-sidebar');
+}
+
     </script>
 </body>
 </html>
