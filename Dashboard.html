@@ -3,157 +3,7 @@
 <head>
     <title>Dashboard</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-
-    <style>
-        /* Gaya untuk sidebar yang muncul */
-        .active-sidebar {
-            left: 0;
-        }
-
-        /* Gaya untuk tombol hamburger */
-        .hamburger {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            font-size: 24px;
-            cursor: pointer;
-            color: #fff;
-            z-index: 1;
-        }
-
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        /* Gaya header */
-        .header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px 30px;
-            background: #2d2d2d;
-            color: #fff;
-            box-shadow: 0px 5px 10px rgba(90, 116, 148, 0.3);
-            border-radius: 5px;
-        }
-
-        .header i {
-            font-size: 30px;
-            cursor: pointer;
-            color: #fff;
-        }
-
-        /* Gaya untuk sidebar */
-        .side-bar {
-            width: 250px;
-            min-height: 100vh;
-            background: #2d2d2d;
-            transition: left 0.5s;
-            left: -250px;
-            position: fixed;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
-        }
-
-        .side-bar.active-sidebar {
-            left: 0;
-        }
-
-        .user-p {
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .user-p img {
-            width: 100px;
-            border-radius: 50%;
-        }
-
-        .user-p h4 {
-            color: #ccc;
-        }
-
-        .side-bar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .side-bar ul li {
-            margin: 0;
-            padding: 0;
-        }
-
-        .side-bar ul li a {
-            color: #eee;
-            text-decoration: none;
-            display: block;
-            padding: 15px 20px;
-        }
-
-        .side-bar ul li a:hover {
-            background-color: #0085ff;
-        }
-
-        .total-box {
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
-            margin: 10px;
-        }
-
-        .total-box h2 {
-            font-size: 24px;
-            color: #333;
-        }
-
-        .income-box {
-            background: #36A2EB;
-            color: #fff;
-        }
-
-        .expenses-box {
-            background: #4CAF50;
-            color: #fff;
-        }
-
-        .data-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .data-box span {
-            margin-right: 10px;
-        }
-
-        /* Gaya untuk select */
-        .data-box select {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        /* Gaya untuk opsi dalam select */
-        .data-box select option {
-            font-size: 16px;
-        }
-
-        .chart-container {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .chart {
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
-            margin: 10px;
-            flex: 1;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="Dashboard.css">
 </head>
 <body>
     <!-- Tombol hamburger untuk membuka/menutup sidebar -->
@@ -161,60 +11,7 @@
 
     <!-- Sidebar -->
     <div class="side-bar" id="sidebar">
-        <div class="user-p">
-            <img src="logo.png" alt="Logo">
-            <h4>Keuangan KU</h4>
-        </div>
-        <ul>
-            <li>
-                <a href="Dashboard.html">
-                    <i class="fa fa-desktop" aria-hidden="true"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="Income.html">
-                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                    <span>Income</span>
-                </a>
-            </li>
-            <li>
-                <a href="Expenses.html">
-                    <i class="fa fa-comment-o" aria-hidden="true"></i>
-                    <span>Expenses</span>
-                </a>
-            </li>
-            <li>
-                <a href="Calendar.html">
-                    <i class="fa fa-comment-o" aria-hidden="true"></i>
-                    <span>Calendar</span>
-                </a>
-            </li>
-            <li>
-                <a href="Chatbot.html">
-                    <i class="fa fa-comment-o" aria-hidden="true"></i>
-                    <span>Financial Planner</span>
-                </a>
-            </li>
-            <li>
-                <a href="Calculator.html">
-                    <i class="fa fa-comment-o" aria-hidden="true"></i>
-                    <span>Calculator</span>
-                </a>
-            </li>
-            <li>
-                <a href="About.html">
-                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    <span>About</span>
-                </a>
-            </li>
-            <li>
-                <a href="index.html">
-                    <i class="fa fa-power-off" aria-hidden="true"></i>
-                    <span>Logout</span>
-                </a>
-            </li>
-        </ul>
+        <!-- Konten sidebar di sini -->
     </div>
 
     <!-- Konten utama -->
@@ -228,7 +25,7 @@
         <div class="total-box income-box">
             <h2>Total Data Income</h2>
             <div class="data-box">
-                <span>9000</span>
+                <span id="incomeTotal">Rp 0</span>
                 <select id="incomeDateOption" onchange="updateIncomeData()">
                     <option value="week">Minggu</option>
                     <option value="month">Bulan</option>
@@ -241,7 +38,7 @@
         <div class="total-box expenses-box">
             <h2>Total Data Expenses</h2>
             <div class="data-box">
-                <span>5000</span>
+                <span id="expensesTotal">Rp 0</span>
                 <select id="expensesDateOption" onchange="updateExpensesData()">
                     <option value="week">Minggu</option>
                     <option value="month">Bulan</option>
@@ -250,86 +47,150 @@
             </div>
         </div>
 
-        <!-- Container untuk grafik -->
+        <!-- Total Box untuk Tabungan -->
+        <div class="total-box savings-box">
+            <h2>Total Tabungan</h2>
+            <div class="data-box">
+                <span id="savingsTotal">Rp 0</span>
+                <select id="savingsDateOption" onchange="updateSavingsData()">
+                    <option value="week">Minggu</option>
+                    <option value="month">Bulan</option>
+                    <option value="year">Tahun</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Container untuk grafik dan opsi -->
         <div class="chart-container">
-            <!-- Pie Chart untuk Income dan Expenses -->
+            <!-- Opsi untuk memilih periode di grafik Pie -->
             <div class="chart">
                 <h2>Grafik Pendapatan dan Pengeluaran</h2>
+                <select id="pieChartDateOption" onchange="updatePieChart()">
+                    <option value="week">Minggu</option>
+                    <option value="month">Bulan</option>
+                    <option value="year">Tahun</option>
+                </select>
                 <canvas id="myPieChart" width="300" height="300"></canvas>
             </div>
 
-            <!-- Bar Chart untuk Kategori Pengeluaran dan Pemasukan -->
+            <!-- Opsi untuk memilih periode di grafik Batang -->
             <div class="chart">
                 <h2>Grafik Kategori Pengeluaran dan Pemasukan</h2>
+                <select id="barChartDateOption" onchange="updateBarChart()">
+                    <option value="week">Minggu</option>
+                    <option value="month">Bulan</option>
+                    <option value="year">Tahun</option>
+                </select>
                 <canvas id="myBarChart" width="300" height="300"></canvas>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript untuk mengontrol sidebar dan grafik -->
     <script>
         function toggleSidebar() {
             var sidebar = document.getElementById("sidebar");
             sidebar.classList.toggle("active-sidebar");
         }
 
-        // Kode JavaScript untuk mengupdate data Income berdasarkan pilihan periode
+        // Contoh data dummy untuk Total Income
+        var dummyIncomeData = {
+            week: 2500000,
+            month: 10000000,
+            year: 120000000,
+        };
+
+        // Contoh data dummy untuk Total Expenses
+        var dummyExpensesData = {
+            week: 2000000,
+            month: 8000000,
+            year: 96000000,
+        };
+
+        // Contoh data dummy untuk Total Tabungan
+        var dummySavingsData = {
+            week: 500000,
+            month: 2000000,
+            year: 24000000,
+        };
+
         function updateIncomeData() {
-            // Tambahkan kode untuk mengupdate data Income di sini
+            var incomeTotalElement = document.getElementById("incomeTotal");
+            var selectedPeriod = document.getElementById("incomeDateOption").value;
+            incomeTotalElement.textContent = "Rp " + formatRupiah(dummyIncomeData[selectedPeriod]);
         }
 
-        // Kode JavaScript untuk mengupdate data Expenses berdasarkan pilihan periode
         function updateExpensesData() {
-            // Tambahkan kode untuk mengupdate data Expenses di sini
+            var expensesTotalElement = document.getElementById("expensesTotal");
+            var selectedPeriod = document.getElementById("expensesDateOption").value;
+            expensesTotalElement.textContent = "Rp " + formatRupiah(dummyExpensesData[selectedPeriod]);
         }
 
-        // Kode JavaScript untuk membuat Pie Chart
-        var pieCtx = document.getElementById("myPieChart").getContext("2d");
-        var pieData = {
-            labels: ["Income", "Expenses"],
-            datasets: [{
-                data: [5000000, 3000000],
-                backgroundColor: ["#36A2EB", "#4CAF50"]
-            }]
-        };
+        function updateSavingsData() {
+            var savingsTotalElement = document.getElementById("savingsTotal");
+            var selectedPeriod = document.getElementById("savingsDateOption").value;
+            savingsTotalElement.textContent = "Rp " + formatRupiah(dummySavingsData[selectedPeriod]);
+        }
 
-        var pieChart = new Chart(pieCtx, {
-            type: "pie",
-            data: pieData,
-        });
+        function updatePieChart() {
+            var pieCtx = document.getElementById("myPieChart").getContext("2d");
+            var selectedPeriod = document.getElementById("pieChartDateOption").value;
 
-        // Kode JavaScript untuk membuat Bar Chart
-        var barCtx = document.getElementById("myBarChart").getContext("2d");
-        var barData = {
-            labels: ["Gaji", "Makanan", "Hiburan", "Transportasi", "Tagihan"],
-            datasets: [
-                {
-                    label: "Pemasukan",
-                    backgroundColor: "rgba(54, 162, 235, 0.5)",
-                    data: [5000000, 0, 0, 0, 0],
-                },
-                {
-                    label: "Pengeluaran",
-                    backgroundColor: "rgba(76, 175, 80, 0.5)",
-                    data: [0, 1000000, 500000, 300000, 500000],
-                },
-            ],
-        };
+            var pieData = {
+                labels: ["Income", "Expenses", "Tabungan"],
+                datasets: [{
+                    data: [dummyIncomeData[selectedPeriod], dummyExpensesData[selectedPeriod], dummySavingsData[selectedPeriod]],
+                    backgroundColor: ["#36A2EB", "#4CAF50", "#FFA500"]
+                }]
+            };
 
-        var barChart = new Chart(barCtx, {
-            type: "bar",
-            data: barData,
-            options: {
-                scales: {
-                    xAxes: [{
-                        stacked: true,
-                    }],
-                    yAxes: [{
-                        stacked: true,
-                    }],
+            var pieChart = new Chart(pieCtx, {
+                type: "pie",
+                data: pieData,
+            });
+        }
+
+        function updateBarChart() {
+            var barCtx = document.getElementById("myBarChart").getContext("2d");
+            var selectedPeriod = document.getElementById("barChartDateOption").value;
+
+            var barData = {
+                labels: ["Gaji", "Tabungan", "Makanan", "Hiburan", "Transportasi", "Tagihan"],
+                datasets: [
+                    {
+                        label: "Pemasukan",
+                        backgroundColor: "rgba(54, 162, 235, 0.5)",
+                        data: [dummyIncomeData[selectedPeriod], dummySavingsData[selectedPeriod], 0, 0, 0, 0],
+                    },
+                    {
+                        label: "Pengeluaran",
+                        backgroundColor: "rgba(76, 175, 80, 0.5)",
+                        data: [0, 0, 4000000, 2000000, 1000000, 1000000],
+                    },
+                ],
+            };
+
+            var barChart = new Chart(barCtx, {
+                type: "bar",
+                data: barData,
+                options: {
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                        }],
+                        yAxes: [{
+                            stacked: true,
+                        }],
+                    },
                 },
-            },
-        });
+            });
+        }
+
+        function formatRupiah(angka) {
+            var reverse = angka.toString().split('').reverse().join('');
+            var ribuan = reverse.match(/\d{1,3}/g);
+            ribuan = ribuan.join('.').split('').reverse().join('');
+            return ribuan;
+        }
     </script>
 </body>
 </html>
