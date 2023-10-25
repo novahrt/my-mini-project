@@ -3,83 +3,91 @@
 <head>
     <meta charset="utf-8">
     <title>Calendar</title>
+    <!-- Mengimpor file CSS untuk tampilan kalender -->
     <link rel="stylesheet" href="Calendar.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google Font Link for Icons -->
+    <!-- Mengimpor Google Font untuk ikon -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <!-- Mengimpor file CSS untuk toggle sidebar -->
     <link rel="stylesheet" type="text/css" href="toogle.css">
 </head>
 
 <body>
-     <!-- Tombol hamburger untuk membuka/menutup sidebar -->
-     <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+    <!-- Tombol hamburger untuk membuka/menutup sidebar -->
+    <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
 
-     <!-- Sidebar -->
-     <div class="side-bar" id="sidebar">
-         <div class="user-p">
-             <img src="logo.png" alt="Logo">
-             <h4>Keuangan KU</h4>
-         </div>
-         <ul>
-             <li>
-                 <a href="Dashboard.html">
-                     <i class="fa fa-desktop" aria-hidden="true"></i>
-                     <span>Dashboard</span>
-                 </a>
-             </li>
-             <li>
-                 <a href="Income.html">
-                     <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                     <span>Income</span>
-                 </a>
-             </li>
-             <li>
-                 <a href="Expenses.html">
-                     <i class="fa fa-comment-o" aria-hidden="true"></i>
-                     <span>Expenses</span>
-                 </a>
-             </li>
-             <li>
-                 <a href="Calendar.html">
-                     <i class="fa fa-comment-o" aria-hidden="true"></i>
-                     <span>Calendar</span>
-                 </a>
-             </li>
-             <li>
-                 <a href="Chatbot.html">
-                     <i class="fa fa-comment-o" aria-hidden="true"></i>
-                     <span>Financial Planner</span>
-                 </a>
-             </li>
-             <li>
-                 <a href="Calculator.html">
-                     <i class="fa fa-comment-o" aria-hidden="true"></i>
-                     <span>Calculator</span>
-                 </a>
-             </li>
-             <li>
-                 <a href="About.html">
-                     <i class="fa fa-info-circle" aria-hidden="true"></i>
-                     <span>About</span>
-                 </a>
-             </li>
-             <li>
-                 <a href="index.html">
-                     <i class="fa fa-power-off" aria-hidden="true"></i>
-                     <span>Logout</span>
-                 </a>
-             </li>
-         </ul>
-     </div>
+    <!-- Sidebar -->
+    <div class="side-bar" id="sidebar">
+        <div class="user-p">
+            <img src="logo.png" alt="Logo">
+            <h4>Keuangan KU</h4>
+        </div>
+        <ul>
+            
+            <!-- Daftar menu dalam sidebar -->
+            <li>
+                <a href="Dashboard.html">
+                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="Income.html">
+                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                    <span>Income</span>
+                </a>
+            </li>
+            <li>
+                <a href="Expenses.html">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <span>Expenses</span>
+                </a>
+            </li>
+            <li>
+                <a href="Calendar.html">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <span>Calendar</span>
+                </a>
+            </li>
+            <li>
+                <a href="Chatbot.html">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <span>Financial Planner</span>
+                </a>
+            </li>
+            <li>
+                <a href="Calculator.html">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <span>Calculator</span>
+                </a>
+            </li>
+            <li>
+                <a href="About.html">
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <i class="fa fa-power-off" aria-hidden="true"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Konten utama -->
     <div class="wrapper">
         <header>
             <p class="current-date"></p>
             <div class="icons">
+                <!-- Tombol navigasi kalender -->
                 <span id="prev" class="material-symbols-rounded">chevron_left</span>
                 <span id="next" class="material-symbols-rounded">chevron_right</span>
             </div>
         </header>
         <div class="calendar">
+            <!-- Daftar hari dalam seminggu -->
             <ul class="weeks">
                 <li>Sun</li>
                 <li>Mon</li>
@@ -89,14 +97,19 @@
                 <li>Fri</li>
                 <li>Sat</li>
             </ul>
+            <!-- Daftar tanggal dalam kalender -->
             <ul class="days" id="calendar-days"></ul>
         </div>
     </div>
+
+    <!-- Pop-up untuk konten tambahan -->
     <div class="popup" id="popup">
         <div class="popup-content" id="popupContent">
-            <!-- Pop-up content goes here -->
+            <!-- Konten pop-up akan ditampilkan di sini -->
         </div>
     </div>
+
+    <!-- Mengimpor file JavaScript untuk kalender dan toggle sidebar -->
     <script src="Calendar.js"></script>
     <script src="toogle.js"></script>
 </body>

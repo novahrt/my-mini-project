@@ -1,3 +1,4 @@
+/* gaya untuk body */
 body {
     font-family: Arial, sans-serif;
     background-color: #1E1E1E;
@@ -9,6 +10,7 @@ body {
     height: 100vh;
 }
 
+/* gaya untuk form */
 .login-form {
     max-width: 400px;
     padding: 20px;
@@ -62,6 +64,7 @@ button[type="button"]:hover {
     background-color: #0056b3;
 }
 
+/* gaya untuk link sign-up */
 .sign-up-link {
     text-align: center;
     margin-top: 10px;

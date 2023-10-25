@@ -6,67 +6,71 @@
     <link rel="stylesheet" type="text/css" href="toogle.css">
 </head>
 <body>
-        <!-- Tombol hamburger untuk membuka/menutup sidebar -->
-        <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+    <!-- Tombol hamburger untuk membuka/menutup sidebar -->
+    <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
 
-        <!-- Sidebar -->
-        <div class="side-bar" id="sidebar">
-            <div class="user-p">
-                <img src="logo.png" alt="Logo">
-                <h4>Keuangan KU</h4>
-            </div>
-            <ul>
-                <li>
-                    <a href="Dashboard.html">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Income.html">
-                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                        <span>Income</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Expenses.html">
-                        <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <span>Expenses</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Calendar.html">
-                        <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <span>Calendar</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Chatbot.html">
-                        <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <span>Financial Planner</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Calculator.html">
-                        <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <span>Calculator</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="About.html">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i>
-                        <span>About</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html">
-                        <i class="fa fa-power-off" aria-hidden="true"></i>
-                        <span>Logout</span>
-                    </a>
-                </li>
-            </ul>
+    <!-- Sidebar -->
+    <div class="side-bar" id="sidebar">
+        <div class="user-p">
+            <img src="logo.png" alt="Logo">
+            <h4>Keuangan KU</h4>
         </div>
+        <ul>
+            <li>
+                <a href="Dashboard.html">
+                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="Income.html">
+                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                    <span>Income</span>
+                </a>
+            </li>
+            <li>
+                <a href="Expenses.html">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <span>Expenses</span>
+                </a>
+            </li>
+            <li>
+                <a href="Calendar.html">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <span>Calendar</span>
+                </a>
+            </li>
+            <li>
+                <a href="Chatbot.html">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <span>Financial Planner</span>
+                </a>
+            </li>
+            <li>
+                <a href="Calculator.html">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <span>Calculator</span>
+                </a>
+            </li>
+            <li>
+                <a href="About.html">
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <i class="fa fa-power-off" aria-hidden="true"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Judul halaman Expenses -->
     <h1>Expenses</h1>
+
+    <!-- Tabel untuk menampilkan data Expenses -->
     <table>
         <thead>
             <tr>
@@ -82,10 +86,13 @@
             <!-- Tabel isi data akan muncul di sini -->
         </tbody>
     </table>
+
+    <!-- Tombol untuk menambahkan data baru -->
     <div class="action-btn">
         <button onclick="openModal()">Tambah Data</button>
     </div>
 
+    <!-- Modal untuk menambahkan data baru -->
     <div id="dataModal" class="modal">
         <div class="modal-content">
             <h2>Tambah Data</h2>
@@ -113,7 +120,7 @@
         </div>
     </div>
 
-    <!-- Pop-up untuk Edit Data -->
+    <!-- Modal untuk menyunting data -->
     <div id="editModal" class="modal">
         <div class="modal-content">
             <h2>Edit Data</h2>

@@ -1,3 +1,4 @@
+// Mengambil elemen-elemen form dan error messages
 const registrationForm = document.getElementById("registration-form");
 const nameInput = document.getElementById("name");
 const nameError = document.getElementById("name-error");
@@ -8,13 +9,17 @@ const passwordError = document.getElementById("password-error");
 const confirmPasswordInput = document.getElementById("confirmPassword");
 const confirmPasswordError = document.getElementById("confirmPassword-error");
 
+// Mengambil elemen-elemen tombol toggle mata kunci
 const passwordToggle = document.querySelectorAll(".password-toggle");
+
+// Menambahkan event listener untuk setiap tombol toggle mata kunci
 passwordToggle.forEach(toggle => {
     toggle.addEventListener("click", function () {
         togglePasswordVisibility(toggle, toggle.previousElementSibling);
     });
 });
 
+// Fungsi untuk menampilkan/menyembunyikan password
 function togglePasswordVisibility(toggle, input) {
     if (input.type === "password") {
         input.type = "text";
@@ -27,6 +32,7 @@ function togglePasswordVisibility(toggle, input) {
     }
 }
 
+// Event listener untuk menangani submit form registrasi
 registrationForm.addEventListener("submit", function (e) {
     nameError.textContent = "";
     emailError.textContent = "";
@@ -57,7 +63,9 @@ registrationForm.addEventListener("submit", function (e) {
     }
 });
 
+// Event listener untuk tombol "Register"
 document.getElementById("register-button").addEventListener("click", function () {
+
     // Validasi apakah semua input telah terisi
     if (
         nameInput.value.trim() !== "" &&
@@ -68,6 +76,7 @@ document.getElementById("register-button").addEventListener("click", function ()
         // Arahkan pengguna ke halaman login jika semua data terisi
         window.location.href = "login.html";
     } else {
+        
         // Tampilkan pesan kesalahan jika ada input yang kosong
         alert("Harap isi semua data.");
     }

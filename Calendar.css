@@ -1,130 +1,145 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-        /* Import Google font - Poppins */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+/* Reset CSS dan font family */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+/* Tampilan dasar halaman */
+body {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    justify-content: center;
+    min-height: 100vh;
+    background: #1E1E1E;
+}
 
-        body {
-            display: flex;
-            align-items: center;
-            padding: 0 10px;
-            justify-content: center;
-            min-height: 100vh;
-            background: #1E1E1E;
-        }
+/* Kontainer utama */
+.wrapper {
+    width: 100%;
+    max-width: 450px;
+    background: #454545;
+    border-radius: 10px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
 
-        .wrapper {
-            width: 100%;
-            max-width: 450px;
-            background: #454545;
-            border-radius: 10px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-        }
+/* Header dengan ikon */
+.wrapper header {
+    display: flex;
+    align-items: center;
+    padding: 25px 30px 10px;
+    justify-content: space-between;
+    color: #fff;
+}
 
-        .wrapper header {
-            display: flex;
-            align-items: center;
-            padding: 25px 30px 10px;
-            justify-content: space between;
-            color: #fff;
-        }
+/* Ikut dan tombol navigasi di header */
+header .icons {
+    display: flex;
+}
 
-        header .icons {
-            display: flex;
-        }
+header .icons span {
+    height: 38px;
+    width: 38px;
+    margin: 0 1px;
+    cursor: pointer;
+    color: #fff;
+    text-align: center;
+    line-height: 38px;
+    font-size: 1.9rem;
+    user-select: none;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
 
-        header .icons span {
-            height: 38px;
-            width: 38px;
-            margin: 0 1px;
-            cursor: pointer;
-            color: #fff;
-            text-align: center;
-            line-height: 38px;
-            font-size: 1.9rem;
-            user-select: none;
-            border-radius: 50%;
-            transition: background-color 0.2s;
-        }
+/* Mengatur tampilan ikon terakhir */
+.icons span:last-child {
+    margin-right: -10px;
+}
 
-        .icons span:last-child {
-            margin-right: -10px;
-        }
+/* Tampilan tanggal saat ini */
+header .current-date {
+    font-size: 1.45rem;
+    font-weight: 500;
+    color: #fff;
+}
 
-        header .current-date {
-            font-size: 1.45rem;
-            font-weight: 500;
-            color: #fff;
-        }
+/* Kalender */
+.calendar {
+    padding: 40px;
+}
 
-        .calendar {
-            padding: 40px;
-        }
+/* Daftar hari dan minggu dalam kalender */
+.calendar ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    text-align: center;
+}
 
-        .calendar ul {
-            display: flex;
-            flex-wrap: wrap;
-            list-style: none;
-            text-align: center;
+.calendar .weeks li {
+    font-weight: 600;
+    color: #f2f2f2;
+    padding: 15px 0;
+}
 
-        }
+/* Daftar tanggal dalam kalender */
+.calendar .days {
+    margin-bottom: 20px;
+}
 
-        .calendar .weeks li {
-            font-weight: 600;
-            color: #f2f2f2;
-            padding: 15px 0;
-        }
+.calendar li {
+    color: #fff;
+    width: calc(100% / 7);
+    font-size: 1.07rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    padding: 10px 0;
+    position: relative; /* Untuk efek hover */
+}
 
-        .calendar .days {
-            margin-bottom: 20px;
-        }
+/* Tampilan tanggal aktif dalam kalender */
+.calendar .days li.active {
+    background: #006fff;
+    color: #fff;
+    border-radius: 50%;
+}
 
-        .calendar li {
-            color: #fff;
-            width: calc(100% / 7);
-            font-size: 1.07rem;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            padding: 10px 0;
-            position: relative; /* Added */
-        }
+/* Tampilan tanggal non-aktif dalam kalender */
+.calendar .days li.inactive {
+    color: #aaa;
+}
 
-        .calendar .days li.active {
-            background: #006fff;
-            color: #fff;
-            border-radius: 50%;
-        }
+/* Efek hover pada tanggal dalam kalender */
+.calendar .days li::before {
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 50%;
+    height: 40px;
+    width: 40px;
+    z-index: -1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: background-color 0.2s;
+}
 
-        .calendar .days li.inactive {
-            color: #aaa;
-        }
+/* Tampilan tanggal aktif saat dihover */
+.calendar .days li.active::before {
+    background: #007BFF;
+}
 
-        .calendar .days li::before {
-            position: absolute;
-            content: "";
-            left: 50%;
-            top: 50%;
-            height: 40px;
-            width: 40px;
-            z-index: -1;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: background-color 0.2s;
-        }
+/* Tampilan tanggal non-aktif saat dihover */
+.calendar .days li:not(.active):hover::before {
+    background: #f2f2f2;
+}
 
-        .calendar .days li.active::before {
-            background: #007BFF;
-        }
-
-        .calendar .days li:not(.active):hover::before {
-            background: #f2f2f2;
-        }
-        .hamburger {
+/* Tombol hamburger untuk menu */
+.hamburger {
     position: fixed;
     top: 20px;
     left: 20px;
@@ -145,10 +160,12 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
 }
 
+/* Tampilan sidebar ketika aktif */
 .side-bar.active-sidebar {
     left: 0;
 }
 
+/* Informasi pengguna dalam sidebar */
 .user-p {
     text-align: center;
     padding: 20px 0;
@@ -159,202 +176,61 @@
     border-radius: 50%;
 }
 
-.user-p h4 {
+user-p h4 {
     color: #ccc;
 }
 
+/* Daftar menu dalam sidebar */
 .side-bar ul {
     list-style: none;
     padding: 0;
 }
 
-.side-bar ul li {
+side-bar ul li {
     margin: 0;
     padding: 0;
 }
 
-.side-bar ul li a {
+side-bar ul li a {
     color: #eee;
     text-decoration: none;
     display: block;
     padding: 15px 20px;
 }
 
-.side-bar ul li a:hover {
+/* Tampilan saat menu dihover */
+side-bar ul li a:hover {
     background-color: #0085ff;
 }
-        /* Import Google font - Poppins */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+/* Gaya untuk pop-up */
+.popup {
+    display: none;
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        body {
-            display: flex;
-            align-items: center;
-            padding: 0 10px;
-            justify-content: center;
-            min-height: 100vh;
-            background: #1E1E1E;
-        }
+/* Mengatur tampilan ikon panah */
+.icons span {
+    height: 48px;
+    width: 48px;
+    margin: 0 5px;
+    font-size: 2rem;
+}
 
-        .wrapper {
-            width: 100%;
-            max-width: 450px;
-            background: #454545;
-            border-radius: 10px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-        }
-
-        .wrapper header {
-            display: flex;
-            align-items: center;
-            padding: 25px 30px 10px;
-            justify-content: space between;
-            color: #fff;
-        }
-
-        header .icons {
-            display: flex;
-        }
-
-        header .icons span {
-            height: 38px;
-            width: 38px;
-            margin: 0 1px;
-            cursor: pointer;
-            color: #fff;
-            text-align: center;
-            line-height: 38px;
-            font-size: 1.9rem;
-            user-select: none;
-            border-radius: 50%;
-            transition: background-color 0.2s;
-        }
-
-        .icons span:last-child {
-            margin-right: -10px;
-        }
-
-        header .current-date {
-            font-size: 1.45rem;
-            font-weight: 500;
-            color: #fff;
-        }
-
-        .calendar {
-            padding: 20px;
-        }
-
-        .calendar ul {
-            display: flex;
-            flex-wrap: wrap;
-            list-style: none;
-            text-align: center;
-
-        }
-
-        .calendar .weeks li {
-            font-weight: 600;
-            color: #f2f2f2;
-            padding: 5px 0;
-        }
-
-        .calendar .days {
-            margin-bottom: 20px;
-        }
-
-        .calendar li {
-            color: #fff;
-            width: calc(100% / 7);
-            font-size: 1.07rem;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            padding: 10px 0;
-            position: relative; /* Added */
-        }
-
-        .calendar .days li.active {
-            background: #006fff;
-            color: #fff;
-            border-radius: 50%;
-        }
-
-        .calendar .days li.inactive {
-            color: #aaa;
-        }
-
-        .calendar .days li::before {
-            position: absolute;
-            content: "";
-            left: 50%;
-            top: 50%;
-            height: 40px;
-            width: 40px;
-            z-index: -1;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: background-color 0.2s;
-        }
-
-        .calendar .days li.active::before {
-            background: #007BFF;
-        }
-
-        .calendar .days li:not(.active):hover::before {
-            background: #f2f2f2;
-        }
-
-        .popup {
-            display: none;
-            background: rgba(0, 0, 0, 0.7);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        /* Perbesar ikon panah */
-        .icons span {
-            height: 48px;
-            width: 48px;
-            margin: 0 5px; /* Besarkan margin */
-            font-size: 2rem; /* Besarkan ukuran ikon */
-        }
-        .popup-content {
-            background: #9e9e9e;
-            color: black;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            max-width: 80%;
-        }
-
-        .popup {
-            display: none;
-            background: rgba(0, 0, 0, 0.7);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .popup-content {
-            background: #9e9e9e;
-            color: black;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            max-width: 80%;
-        }
+/* Konten pop-up */
+.popup-content {
+    background: #9e9e9e;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    max-width: 80%;
+}

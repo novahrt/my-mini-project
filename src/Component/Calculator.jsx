@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import './Calculator.css';
 
 function Calculator() {
+  // State untuk mengelola tampilan di layar kalkulator
   const [display, setDisplay] = useState('');
 
+  // Fungsi untuk menangani klik tombol kalkulator
   const handleButtonClick = (value) => {
     if (value === 'C') {
-      // Clear the display
+      // Menghapus tampilan
       setDisplay('');
     } else if (value === '=') {
-      // Evaluate the expression
+      // Menghitung hasil ekspresi
       try {
         const result = eval(display);
         setDisplay(result);
@@ -17,14 +19,14 @@ function Calculator() {
         setDisplay('Error');
       }
     } else {
-      // Append the value to the display
+      // Menambahkan nilai ke tampilan
       setDisplay(display + value);
     }
   };
 
   return (
     <div>
-      <h1>Calculator</h1>
+      <h1>Kalkulator</h1>
       <input
         type="text"
         name="display"

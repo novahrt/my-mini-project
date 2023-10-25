@@ -3,31 +3,38 @@ import './Calendar.css';
 import './toogle.css';
 
 function Calendar() {
+  // State untuk mengelola tampilan sidebar
   const [sidebarActive, setSidebarActive] = useState(false);
+
+  // State untuk mengelola tampilan popup
   const [popupContent, setPopupContent] = useState('');
   const [popupVisible, setPopupVisible] = useState(false);
 
+  // Fungsi untuk mengubah status sidebar
   const toggleSidebar = () => {
     setSidebarActive(!sidebarActive);
   };
 
+  // Fungsi untuk menampilkan pop-up dengan konten tertentu
   const showPopup = (content) => {
     setPopupContent(content);
     setPopupVisible(true);
   };
 
+  // Fungsi untuk menutup pop-up
   const closePopup = () => {
     setPopupVisible(false);
   };
 
   return (
     <div>
+      {/* Tombol hamburger untuk membuka/menutup sidebar */}
       <div className={`hamburger ${sidebarActive ? 'active-sidebar' : ''}`} onClick={toggleSidebar}>
         &#9776;
       </div>
 
       <div className={`side-bar ${sidebarActive ? 'active-sidebar' : ''}`} id="sidebar">
-        {/* Sidebar content */}
+        {/* Konten sidebar */}
       </div>
 
       <div className="wrapper">

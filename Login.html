@@ -11,16 +11,22 @@
     <div class="login-form">
         <h2>Login</h2>
         <form id="login-form">
+
+            <!-- Form group for Nama -->
             <div class="form-group">
                 <label for="nama">Nama</label>
                 <input type="text" name="nama" id="nama">
                 <span id="nama-error" class="error"></span>
             </div>
+
+            <!-- Form group for Email -->
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email">
                 <span id="email-error" class="error"></span>
             </div>
+
+            <!-- Form group for Password -->
             <div class="form-group">
                 <label for="password">Password</label>
                 <div style="position: relative;">
@@ -29,13 +35,19 @@
                 </div>
                 <span id="password-error" class="error"></span>
             </div>
+
+            <!-- Login button -->
             <button type="button" id="login-button">Login</button>
         </form>
         <br>
+
+        <!-- Sign-up link -->
         <div class="sign-up-link">
             Belum memiliki akun? <a href="register.html">Daftar Sekarang</a>
         </div>
     </div>
+
+    <!-- Import file js -->
     <script src="Login.js"></script>    
 </body>
 </html>

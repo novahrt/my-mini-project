@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const RegistrationForm = () => {
+  // State untuk menyimpan data input dan pesan kesalahan
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,20 +12,23 @@ const RegistrationForm = () => {
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
+  // Fungsi untuk mengatur visibilitas password
   const togglePasswordVisibility = (input) => {
-    // Implement your password visibility toggle logic here
+    // Implementasikan logika toggle visibilitas password di sini
   };
 
+  // Fungsi untuk validasi formulir
   const validateForm = () => {
-    // Implement your form validation logic here
+    // Implementasikan logika validasi formulir di sini
   };
 
+   // Render tampilan register
   return (
     <div className="registration-form">
       <h2>Registrasi</h2>
       <form>
         <div className="form-group">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Nama</label>
           <input
             type="text"
             name="name"
@@ -37,9 +41,9 @@ const RegistrationForm = () => {
             {nameError}
           </div>
         </div>
-        {/* Repeat similar structure for other form fields */}
+        {/* Ulangi struktur yang serupa untuk bidang formulir lainnya */}
         <button type="button" onClick={validateForm}>
-          Register
+          Daftar
         </button>
       </form>
     </div>

@@ -1,89 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About</title>
+    <!-- Import file css -->
     <link rel="stylesheet" href="About.css">
 </head>
-
 <body>
-    <body>
-        <!-- Tombol hamburger untuk membuka/menutup sidebar -->
-        <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+    <!-- Tombol hamburger untuk membuka/menutup sidebar -->
+    <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
    
-        <!-- Sidebar -->
-        <div class="side-bar" id="sidebar">
-            <div class="user-p">
-                <img src="logo.png" alt="Logo">
-                <h4>Keuangan KU</h4>
-            </div>
-            <ul>
-                <li>
-                    <a href="Dashboard.html">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Income.html">
-                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                        <span>Income</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Expenses.html">
-                        <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <span>Expenses</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Calendar.html">
-                        <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <span>Calendar</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Chatbot.html">
-                        <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <span>Financial Planner</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Calculator.html">
-                        <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <span>Calculator</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="About.html">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i>
-                        <span>About</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html">
-                        <i class="fa fa-power-off" aria-hidden="true"></i>
-                        <span>Logout</span>
-                    </a>
-                </li>
-            </ul>
+    <!-- Sidebar -->
+    <div class="side-bar" id="sidebar">
+        <div class="user-p">
+            <img src="logo.png" alt="Logo">
+            <h4>Keuangan KU</h4>
         </div>
-    <div class="container">
+        <ul>
+            <li>
+                <a href="Dashboard.html">
+                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
 
+            <!-- Daftar menu lainnya -->
+        </ul>
+    </div>
+    <div class="container">
+        <!-- Kartu Container -->
         <div class="card-container">
+
+            <!-- Kartu Kiri (Informasi Tentang) -->
             <div class="left">
                 <div class="left-container">
                     <h2>Tentang Kami</h2>
                     <p>Keuangan Ku adalah aplikasi untuk mengelola rencana keuangan dengan fitur tambahan yang lengkap dengan tambahan fitur chatbot.</p>
-                    <br>
-                    <p> Kami berharap fitur kami bisa membuat user merasa senang dan nyaman dalam menggunakan aplikasi ini.</p>
-                    <br>
-                    <p>Silahkan hubungi kami jika ada pertanyaan.</p>
+                    <p>Kami berharap fitur kami bisa membuat pengguna merasa senang dan nyaman dalam menggunakan aplikasi ini.</p>
+                    <p>Silakan hubungi kami jika Anda memiliki pertanyaan.</p>
                 </div>
             </div>
+
+            <!-- Kartu Kanan (Formulir Kontak) -->
             <div class="right">
                 <div class="right-container">
                     <form action="">
@@ -92,7 +52,7 @@
                         <input type="text" placeholder="Nama">
                         <input type="email" placeholder="Alamat Email">
                         <input type="text" placeholder="Perusahaan" autocomplete="off">
-                        <input type="phone" placeholder="Telepone" autocomplete="off">
+                        <input type="phone" placeholder="Telepon" autocomplete="off">
                         <textarea rows="10" placeholder="Pesan"></textarea>
                         <button>Kirim</button>
                     </form>
@@ -100,6 +60,7 @@
             </div>
         </div>
     </div>
+    <!-- Import file js -->
     <script src="toogle.js"></script>
 </body>
 </html>

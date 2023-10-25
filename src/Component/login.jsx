@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 function LoginForm() {
+  // Menggunakan state untuk mengelola input dan pesan kesalahan
   const [nama, setNama] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -9,10 +10,12 @@ function LoginForm() {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
+  // Fungsi untuk mengubah visibilitas password
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
+  // Fungsi yang dijalankan saat formulir di-submit
   const handleSubmit = (e) => {
     e.preventDefault();
     setNamaError('');
@@ -32,12 +35,13 @@ function LoginForm() {
     }
   };
 
+  // Render tampilan formulir
   return (
     <div className="login-form">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label for="nama">Nama</label>
+          <label htmlFor="nama">Nama</label>
           <input
             type="text"
             name="nama"
@@ -50,7 +54,7 @@ function LoginForm() {
           </span>
         </div>
         <div className="form-group">
-          <label for="email">Email</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             name="email"
@@ -63,7 +67,7 @@ function LoginForm() {
           </span>
         </div>
         <div className="form-group">
-          <label for="password">Password</label>
+          <label htmlFor="password">Password</label>
           <div style={{ position: 'relative' }}>
             <input
               type={passwordVisible ? 'text' : 'password'}

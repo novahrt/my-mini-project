@@ -4,44 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
+    <!-- Import CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" href="Register.css">
+</head>
 <body>
     <div class="registration-form">
         <h2>Registrasi</h2>
         <form id="registration-form">
+
+            <!-- Bagian untuk mengisi nama -->
             <div class="form-group">
                 <label for="name">Name</label>
                 <br>
                 <input type="text" name="name" id="name" required>
                 <div class="error" id="name-error"></div>
             </div>
+
+            <!-- Bagian untuk mengisi alamat email -->
             <div class="form-group">
                 <label for="email">Email</label>
                 <br>
                 <input type="email" name="email" id="email" required>
                 <div class="error" id="email-error"></div>
             </div>
+
+            <!-- Bagian untuk mengisi kata sandi -->
             <div class="form-group">
                 <label for="password">Password</label>
                 <div style="position: relative;">
                     <input type="password" name="password" id="password" required>
+
+                    <!-- Tombol mata kunci yang dapat diaktifkan dan dinonaktifkan -->
                     <i class="password-toggle far fa-eye" id="password-toggle"></i>
                 </div>
                 <div class="error" id="password-error"></div>
             </div>
+
+            <!-- Bagian untuk mengonfirmasi kata sandi -->
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
                 <div style="position: relative;">
                     <input type="password" name="confirmPassword" id="confirmPassword" required>
+                    <!-- Tombol mata kunci yang dapat diaktifkan dan dinonaktifkan -->
                     <i class="password-toggle far fa-eye" id="confirmPassword-toggle"></i>
                 </div>
                 <div class="error" id="confirmPassword-error"></div>
             </div>
-            <!-- Tambahkan tombol submit -->
+
+            <!-- Tombol untuk melakukan registrasi -->
             <button type="button" id="register-button">Register</button>
         </form>
     </div>
+
+    <!-- Sumber kode JavaScript -->
     <script src="Registrasi.js"></script>
 </body>
 </html>

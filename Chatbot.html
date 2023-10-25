@@ -3,71 +3,71 @@
 <head>
     <meta charset="utf-8">
     <title>Financial Planner</title>
+    <!-- Import Gaya CSS -->
     <link rel="stylesheet" href="Chatbot.css">
-    <!-- Gaya CSS Anda di sini -->
+
 </head>
 <body>
-    <body>
-        <!-- Tombol hamburger untuk membuka/menutup sidebar -->
-        <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+    <!-- Tombol hamburger untuk membuka/menutup sidebar -->
+    <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
    
-        <!-- Sidebar -->
-        <div class="side-bar" id="sidebar">
-            <div class="user-p">
-                <img src="logo.png" alt="Logo">
-                <h4>Keuangan KU</h4>
-            </div>
-            <ul>
-                <li>
-                    <a href="Dashboard.html">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Income.html">
-                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                        <span>Income</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Expenses.html">
-                        <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <span>Expenses</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Calendar.html">
-                        <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <span>Calendar</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Chatbot.html">
-                        <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <span>Financial Planner</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Calculator.html">
-                        <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <span>Calculator</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="About.html">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i>
-                        <span>About</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html">
-                        <i class="fa fa-power-off" aria-hidden="true"></i>
-                        <span>Logout</span>
-                    </a>
-                </li>
-            </ul>
+    <!-- Sidebar -->
+    <div class="side-bar" id="sidebar">
+        <div class="user-p">
+            <img src="logo.png" alt="Logo">
+            <h4>Keuangan KU</h4>
         </div>
+        <ul>
+            <li>
+                <a href="Dashboard.html">
+                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="Income.html">
+                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                    <span>Income</span>
+                </a>
+            </li>
+            <li>
+                <a href="Expenses.html">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <span>Expenses</span>
+                </a>
+            </li>
+            <li>
+                <a href="Calendar.html">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <span>Calendar</span>
+                </a>
+            </li>
+            <li>
+                <a href="Chatbot.html">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <span>Financial Planner</span>
+                </a>
+            </li>
+            <li>
+                <a href="Calculator.html">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <span>Calculator</span>
+                </a>
+            </li>
+            <li>
+                <a href="About.html">
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <i class="fa fa-power-off" aria-hidden="true"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
     <div class="chat-container" id="chat">
         <!-- Chat bot greeting (atas) -->
         <div class="bot-greeting">Halo, saya chatbot. Saya akan membantu Anda terkait masalah keuangan Anda. Tanyakan saja pada saya!</div>
@@ -76,6 +76,8 @@
         <input class="user-input" type="text" id="user-input" placeholder="Ketik pesan Anda di sini...">
         <button class="send-button" id="send-button">Kirim</button>
     </div>
+    
+    <!-- Import file js -->
     <script src="Chatbot.js"></script>
     <script src="toogle.js"></script>
 </body>

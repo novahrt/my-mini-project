@@ -1,3 +1,4 @@
+/* Gaya tombol hamburger untuk membuka/menutup sidebar */
 .hamburger {
     position: fixed;
     top: 20px;
@@ -60,7 +61,7 @@
     background-color: #0085ff;
 }
 
- /* Gaya container chatbot */
+/* Gaya container chatbot */
 .chat-container {
     max-width: 500px;
     border: none;
@@ -134,6 +135,7 @@ body {
     cursor: pointer;
     transition: background-color 0.3s; /* Efek transisi saat hover */
 }
+
 .send-button:hover {
     background-color: #007bff; /* Warna latar belakang saat tombol dihover */
 }

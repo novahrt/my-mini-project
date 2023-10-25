@@ -1,3 +1,4 @@
+/* Gaya untuk tombol hamburger */
 .hamburger {
     position: fixed;
     top: 20px;
@@ -62,7 +63,8 @@
     background-color: #0085ff;
 }
 
-body{
+/* Gaya untuk halaman utama (body) */
+body {
     margin: 0px;
     padding: 0px;
     background-color: #2d2d2d;
@@ -73,11 +75,13 @@ body{
     background-size: cover;
     height: 100vh;
 }
-h1{
+
+h1 {
     font-size: 45px;
 }
 
-input{
+/* Gaya untuk elemen input */
+input {
     width: 75px;
     height: 50px;
     font-size: 45px;
@@ -86,10 +90,10 @@ input{
     background-color: white;
     color: black;
     border-style: none;
-
 }
 
-.btn:hover{
-    background-color:#69b4ff;
+/* Gaya untuk tombol saat dihover */
+.btn:hover {
+    background-color: #69b4ff;
     cursor: pointer;
 }

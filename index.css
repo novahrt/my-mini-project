@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('bg.jpg'); /* Ganti 'background.jpg' dengan URL gambar latar belakang Anda */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center; /* Mengatur agar teks dalam container berada di tengah */
+  color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+h1 {
+  font-size: 3em;
+  margin-bottom: 20px; /* Memberikan jarak di bawah judul */
+}
+
+p {
+  font-size: 1.5em;
+}
+
+.Get-Started-button {
+  background-color: #006fff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease; /* Menambahkan transisi ketika tombol dihover */
+}   
+
+.Get-Started-button:hover {
+  background-color: #69b4ff; /* Warna yang berbeda saat tombol dihover */
+}

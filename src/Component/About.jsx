@@ -1,13 +1,15 @@
 import React from 'react';
-import './Calculator.css';
+import './About.css';
 
 function About() {
   return (
     <div>
+      {/* Tombol hamburger untuk membuka/menutup sidebar */}
       <div className="hamburger" onClick={toggleSidebar}>
         &#9776;
       </div>
 
+      {/* Sidebar */}
       <div className="side-bar" id="sidebar">
         <div className="user-p">
           <img src="logo.png" alt="Logo" />
@@ -20,52 +22,14 @@ function About() {
               <span>Dashboard</span>
             </a>
           </li>
-          <li>
-            <a href="Income.html">
-              <i className="fa fa-envelope-o" aria-hidden="true"></i>
-              <span>Income</span>
-            </a>
-          </li>
-          <li>
-            <a href="Expenses.html">
-              <i className="fa fa-comment-o" aria-hidden="true"></i>
-              <span>Expenses</span>
-            </a>
-          </li>
-          <li>
-            <a href="Calendar.html">
-              <i className="fa fa-comment-o" aria-hidden="true"></i>
-              <span>Calendar</span>
-            </a>
-          </li>
-          <li>
-            <a href="Chatbot.html">
-              <i className="fa fa-comment-o" aria-hidden="true"></i>
-              <span>Financial Planner</span>
-            </a>
-          </li>
-          <li>
-            <a href="Calculator.html">
-              <i className="fa fa-comment-o" aria-hidden="true"></i>
-              <span>Calculator</span>
-            </a>
-          </li>
-          <li>
-            <a href="About.html">
-              <i className="fa fa-info-circle" aria-hidden="true"></i>
-              <span>About</span>
-            </a>
-          </li>
-          <li>
-            <a href="index.html">
-              <i className="fa fa-power-off" aria-hidden="true"></i>
-              <span>Logout</span>
-            </a>
-          </li>
+
+          {/* Daftar menu lainnya */}
         </ul>
       </div>
       <div className="container">
         <div className="card-container">
+
+          {/* Kartu Kiri (Informasi Tentang) */}
           <div className="left">
             <div className="left-container">
               <h2>Tentang Kami</h2>
@@ -76,6 +40,8 @@ function About() {
               <p>Silakan hubungi kami jika ada pertanyaan.</p>
             </div>
           </div>
+          
+          {/* Kartu Kanan (Formulir Kontak) */}
           <div className="right">
             <div className="right-container">
               <form action="">
@@ -84,7 +50,7 @@ function About() {
                 <input type="text" placeholder="Nama" />
                 <input type="email" placeholder="Alamat Email" />
                 <input type="text" placeholder="Perusahaan" autoComplete="off" />
-                <input type="phone" placeholder="Telepone" autoComplete="off" />
+                <input type="phone" placeholder="Telepon" autoComplete="off" />
                 <textarea rows="10" placeholder="Pesan"></textarea>
                 <button>Kirim</button>
               </form>
@@ -97,6 +63,7 @@ function About() {
 }
 
 function toggleSidebar() {
+  // Mengubah tampilan sidebar ketika tombol hamburger diklik
   const sidebar = document.getElementById('sidebar');
   const wrapper = document.querySelector('.wrapper');
   const hamburger = document.querySelector('.hamburger');

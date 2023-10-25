@@ -1,15 +1,19 @@
+ // Array untuk menyimpan data Expenses
 var data = [];
 
+// Fungsi untuk membuka modal tambah data
 function openModal() {
     var modal = document.getElementById('dataModal');
     modal.style.display = 'block';
 }
 
+// Fungsi untuk menutup modal
 function closeModal() {
     var modal = document.getElementById('dataModal');
     modal.style.display = 'none';
 }
 
+// Fungsi untuk menambahkan data Expenses ke dalam array data
 function addRow() {
     var date = document.getElementById('addDate').value;
     var account = document.getElementById('addAccount').value;
@@ -17,13 +21,17 @@ function addRow() {
     var category = document.getElementById('addCategory').value;
     var description = document.getElementById('addDescription').value;
 
+    // Menambahkan data baru ke dalam array data
     data.push({ date, account, amount, category, description });
 
+    // Memperbarui tampilan tabel
     updateTable();
 
+    // Menutup modal
     closeModal();
 }
 
+// Fungsi untuk memperbarui tampilan tabel Expenses
 function updateTable() {
     var table = document.querySelector('table');
     var tbody = table.querySelector('tbody');
@@ -41,8 +49,8 @@ function updateTable() {
 
         dateCell.innerHTML = data[i].date;
         accountCell.innerHTML = data[i].account;
-
-        // Tampilkan jumlah dengan format mata uang Rupiah
+        
+        // Menampilkan jumlah dengan format mata uang Rupiah
         amountCell.innerHTML = formatAsRupiah(data[i].amount);
         categoryCell.innerHTML = data[i].category;
         descriptionCell.innerHTML = data[i].description;
@@ -67,6 +75,7 @@ function updateTable() {
     }
 }
 
+// Fungsi untuk menyunting data Expenses
 function editRow(index) {
     var modal = document.getElementById('editModal');
     modal.style.display = 'block';
@@ -79,6 +88,7 @@ function editRow(index) {
 
     var saveEditButton = document.getElementById('saveEditButton');
     saveEditButton.onclick = function () {
+        // Memperbarui data setelah penyuntingan
         data[index].date = document.getElementById('editDate').value;
         data[index].account = document.getElementById('editAccount').value;
         data[index].amount = document.getElementById('editAmount').value;
@@ -89,22 +99,25 @@ function editRow(index) {
     };
 }
 
+// Fungsi untuk menutup modal penyuntingan
 function closeEditModal() {
     var modal = document.getElementById('editModal');
     modal.style.display = 'none';
 }
 
+// Fungsi untuk menghapus data Expenses
 function deleteRow(index) {
     data.splice(index, 1);
     updateTable();
 }
 
+// Fungsi untuk memformat jumlah sebagai mata uang Rupiah
 function formatAsRupiah(amount) {
-    // Format angka menjadi mata uang Rupiah dengan separator ribuan
     return 'Rp ' + new Intl.NumberFormat('id-ID').format(amount);
 }
 
-
 // Inisialisasi awal dengan data contoh
 data.push({ date: '2023-10-20', account: 'cash', amount: 100000, category: 'tagihan', description: 'Gaji bulan ini' });
+
+// Memperbarui tampilan tabel dengan data awal
 updateTable();

@@ -1,3 +1,4 @@
+/* Mengatur font dan latar belakang body */
 body {
     font-family: Arial, sans-serif;
     background-color: #1E1E1E;
@@ -5,6 +6,7 @@ body {
     padding: 0;
 }
 
+/* Mengatur tampilan form registrasi */
 .registration-form {
     max-width: 400px;
     margin: 0 auto;
@@ -13,22 +15,26 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Gaya untuk judul form */
 h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #ccc;
 }
 
+/* Gaya untuk setiap elemen form-group */
 .form-group {
     margin-bottom: 20px;
     color: #ccc;
 }
 
+/* Gaya untuk label input */
 label {
     display: block;
     font-weight: bold;
 }
 
+/* Gaya untuk input teks, email, dan kata sandi */
 input[type="text"],
 input[type="email"],
 input[type="password"] {
@@ -39,6 +45,7 @@ input[type="password"] {
     border-radius: 4px;
 }
 
+/* Gaya untuk ikon mata kunci yang dapat diaktifkan dan dinonaktifkan */
 .password-toggle {
     cursor: pointer;
     position: absolute;
@@ -47,11 +54,13 @@ input[type="password"] {
     color: black;
 }
 
+/* Gaya untuk pesan kesalahan */
 .error {
     color: red;
     font-size: 14px;
 }
 
+/* Gaya untuk tombol login */
 button[type="button"] {
     background-color: #007BFF;
     color: #fff;
@@ -62,6 +71,7 @@ button[type="button"] {
     width: 100%;
 }
 
+/* Gaya saat tombol login dihover */
 button[type="button"]:hover {
     background-color: #0056b3;
 }
