@@ -18,10 +18,11 @@ h1 {
 /* CSS untuk tabel */
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 95%;
     margin: 20px auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background-color: #fff;
+    padding: 10px;
 }
 
 table, th, td {
@@ -31,6 +32,7 @@ table, th, td {
 th, td {
     padding: 10px;
     text-align: left;
+    margin: 10px; /* Tambahkan margin pada elemen-elemen dalam tabel */
 }
 
 /* CSS untuk header kolom */

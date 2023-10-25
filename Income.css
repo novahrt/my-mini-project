@@ -1,4 +1,4 @@
-/* Reset CSS dan pengaturan font default */
+/* CSS untuk body */
 body {
     font-family: Arial, sans-serif;
     background-color: #1E1E1E;
@@ -6,7 +6,7 @@ body {
     padding: 0;
 }
 
-/* Gaya untuk judul h1 */
+/* CSS untuk judul */
 h1 {
     text-align: center;
     background-color: #2d2d2d;
@@ -15,16 +15,16 @@ h1 {
     margin: 0;
 }
 
-/* Gaya untuk tabel */
+/* CSS untuk tabel */
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 95%;
     margin: 20px auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background-color: #fff;
+    padding: 10px;
 }
 
-/* Gaya untuk sel tabel */
 table, th, td {
     border: 1px solid #ccc;
 }
@@ -32,15 +32,16 @@ table, th, td {
 th, td {
     padding: 10px;
     text-align: left;
+    margin: 10px; /* Tambahkan margin pada elemen-elemen dalam tabel */
 }
 
-/* Gaya untuk sel header tabel */
+/* CSS untuk header kolom */
 th {
     background-color: #006fff;
     color: #e1ffff;
 }
 
-/* Gaya untuk input dan select */
+/* CSS untuk input dan select */
 select, input[type="text"] {
     width: 100%;
     padding: 10px;
@@ -48,13 +49,13 @@ select, input[type="text"] {
     border-radius: 5px;
 }
 
-/* Gaya untuk tombol aksi */
+/* CSS untuk tombol aksi */
 .action-btn {
     text-align: center;
     margin: 20px 0;
 }
 
-/* Gaya untuk modal */
+/* CSS untuk modal */
 .modal {
     display: none;
     position: fixed;
@@ -65,7 +66,7 @@ select, input[type="text"] {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* Gaya untuk konten modal */
+/* CSS untuk konten modal */
 .modal-content {
     background-color: #1E1E1E;
     padding: 20px;
@@ -75,14 +76,14 @@ select, input[type="text"] {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Gaya untuk judul modal */
+/* CSS untuk judul dalam modal */
 .modal-content h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #fff;
 }
 
-/* Gaya untuk input dan select di dalam modal */
+/* CSS untuk input dan select dalam modal */
 .modal-content input, .modal-content select {
     width: 95%;
     padding: 10px;
@@ -91,7 +92,7 @@ select, input[type="text"] {
     border-radius: 5px;
 }
 
-/* Gaya untuk tombol di dalam modal */
+/* CSS untuk tombol dalam modal */
 .modal-content button {
     background-color: #454545;
     color: #fff;
@@ -101,13 +102,13 @@ select, input[type="text"] {
     cursor: pointer;
 }
 
-/* Gaya untuk tombol pertama di dalam modal */
+/* CSS untuk tombol pertama dalam modal */
 .modal-content button:first-child {
     background-color: black;
     margin-right: 10px;
 }
 
-/* Gaya untuk tombol aksi di luar modal */
+/* CSS untuk tombol aksi di luar modal */
 .action-btn button {
     background-color: #0085ff;
     color: #fff;
@@ -117,7 +118,7 @@ select, input[type="text"] {
     cursor: pointer;
 }
 
-/* Gaya hover untuk tombol aksi di luar modal */
+/* CSS untuk tombol aksi di luar modal saat hover */
 .action-btn button:hover {
     background-color: #69b4ff;
 }
