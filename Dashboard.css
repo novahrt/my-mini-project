@@ -89,6 +89,7 @@
     background-color: #0085ff;
 }
 
+/* Gaya untuk total-box */
 .total-box {
     padding: 20px;
     border-radius: 5px;
@@ -102,18 +103,18 @@
 }
 
 .income-box {
-    background: #36A2EB;
+    background: #0085ff;
     color: #fff;
 }
 
 .expenses-box {
-    background: #4CAF50;
+    background: #69b4ff;
     color: #fff;
 }
 
 .savings-box {
-    background: #FFA500;
-    color: #fff;
+    background: #e0ffff;
+    color: #333;
 }
 
 .data-box {
@@ -139,8 +140,10 @@
 /* Gaya untuk opsi dalam select */
 .data-box select option {
     font-size: 16px;
+    padding: 5px 10px; /* Perbaiki jarak untuk opsi */
 }
 
+/* Gaya untuk chart */
 .chart-container {
     display: flex;
     flex-wrap: wrap;
@@ -153,4 +156,9 @@
     border-radius: 5px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
     margin: 10px;
+}
+
+/* Gaya untuk latar belakang body */
+body {
+    background-color: #1E1E1E;
 }

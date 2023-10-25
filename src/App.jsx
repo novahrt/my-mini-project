@@ -5,7 +5,11 @@ import LoginPage from './LoginPage';
 import RegistrationForm from './Component/RegistrationForm';
 import Dashboard from './Dashboard';
 import Income from './Income';
-import Expenses from './Expenses'; // Impor halaman Expenses
+import Expenses from './Expenses';
+import Calendar from './Calendar';
+import FinancialPlanner from './FinancialPlanner';
+import Calculator from './Calculator';
+import About from './About';
 
 function App() {
   return (
@@ -29,7 +33,22 @@ function App() {
               <Link to="/income">Income</Link>
             </li>
             <li>
-              <Link to="/expenses">Expenses</Link> {/* Tambahkan Link ke Expenses */}
+              <Link to="/expenses">Expenses</Link>
+            </li>
+            <li>
+              <Link to="/calendar">Calendar</Link>
+            </li>
+            <li>
+              <Link to="/chatbot">Financial Planner</Link>
+            </li>
+            <li>
+              <Link to="/calculator">Calculator</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/logout">Log Out</Link>
             </li>
           </ul>
         </nav>
@@ -48,7 +67,22 @@ function App() {
             <Income />
           </Route>
           <Route path="/expenses">
-            <Expenses /> {/* Tambahkan Route untuk Expenses */}
+            <Expenses />
+          </Route>
+          <Route path="/calendar">
+            <Calendar />
+          </Route>
+          <Route path="/chatbot">
+            <FinancialPlanner />
+          </Route>
+          <Route path="/calculator">
+            <Calculator />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/logout">
+            <LandingPage /> {/* Asumsikan ini mengarahkan ke halaman landing */}
           </Route>
           <Route path="/">
             <LandingPage />

@@ -1,3 +1,4 @@
+/* Reset CSS dan pengaturan font default */
 body {
     font-family: Arial, sans-serif;
     background-color: #1E1E1E;
@@ -5,6 +6,7 @@ body {
     padding: 0;
 }
 
+/* Gaya untuk judul h1 */
 h1 {
     text-align: center;
     background-color: #2d2d2d;
@@ -13,6 +15,7 @@ h1 {
     margin: 0;
 }
 
+/* Gaya untuk tabel */
 table {
     border-collapse: collapse;
     width: 100%;
@@ -21,6 +24,7 @@ table {
     background-color: #fff;
 }
 
+/* Gaya untuk sel tabel */
 table, th, td {
     border: 1px solid #ccc;
 }
@@ -30,11 +34,13 @@ th, td {
     text-align: left;
 }
 
+/* Gaya untuk sel header tabel */
 th {
     background-color: #006fff;
     color: #e1ffff;
 }
 
+/* Gaya untuk input dan select */
 select, input[type="text"] {
     width: 100%;
     padding: 10px;
@@ -42,11 +48,13 @@ select, input[type="text"] {
     border-radius: 5px;
 }
 
+/* Gaya untuk tombol aksi */
 .action-btn {
     text-align: center;
     margin: 20px 0;
 }
 
+/* Gaya untuk modal */
 .modal {
     display: none;
     position: fixed;
@@ -57,6 +65,7 @@ select, input[type="text"] {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
+/* Gaya untuk konten modal */
 .modal-content {
     background-color: #1E1E1E;
     padding: 20px;
@@ -66,12 +75,14 @@ select, input[type="text"] {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Gaya untuk judul modal */
 .modal-content h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #fff;
 }
 
+/* Gaya untuk input dan select di dalam modal */
 .modal-content input, .modal-content select {
     width: 95%;
     padding: 10px;
@@ -80,6 +91,7 @@ select, input[type="text"] {
     border-radius: 5px;
 }
 
+/* Gaya untuk tombol di dalam modal */
 .modal-content button {
     background-color: #454545;
     color: #fff;
@@ -89,11 +101,13 @@ select, input[type="text"] {
     cursor: pointer;
 }
 
+/* Gaya untuk tombol pertama di dalam modal */
 .modal-content button:first-child {
     background-color: black;
     margin-right: 10px;
 }
 
+/* Gaya untuk tombol aksi di luar modal */
 .action-btn button {
     background-color: #0085ff;
     color: #fff;
@@ -103,7 +117,7 @@ select, input[type="text"] {
     cursor: pointer;
 }
 
+/* Gaya hover untuk tombol aksi di luar modal */
 .action-btn button:hover {
     background-color: #69b4ff;
 }
-
