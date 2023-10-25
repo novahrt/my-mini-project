@@ -1,0 +1,17 @@
+{
+    "routes": [
+      { "handle": "filesystem" },
+      { "src": "/login", "dest": "/Login.html" },
+      { "src": "/register", "dest": "/register.html" },
+      { "src": "/dashboard", "dest": "/Dashboard.html" },
+      { "src": "/income", "dest": "/Income.html" },
+      { "src": "/expenses", "dest": "/Expenses.html" },
+      { "src": "/calendar", "dest": "/Calendar.html" },
+      { "src": "/chatbot", "dest": "/Chatbot.html" },
+      { "src": "/calculator", "dest": "/Calculator.html" },
+      { "src": "/about", "dest": "/About.html" },
+      { "src": "/logout", "dest": "/" },
+      { "src": "/*", "dest": "/LandingPage.html" }
+    ]
+  }
+  
